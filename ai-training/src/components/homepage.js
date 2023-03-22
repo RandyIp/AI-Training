@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Intro from './intro.js'
 import Projects from './projects.js'
+import About from './about.js'
 
 const Homepage = () => {
   return (<Container>
@@ -12,7 +13,13 @@ const Homepage = () => {
     <Section>
       <Projects />
     </Section>
-  </Container>)
+
+    <Section>
+      <About />
+    </Section>
+  </Container>
+
+  )
 }
 
 const Container = styled.div`

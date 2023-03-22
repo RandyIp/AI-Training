@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import introImg from '../images/introImg2.jpeg'
+import introImg from '../images/introImg3.jpeg'
 
 const Intro = () => {
   return (
