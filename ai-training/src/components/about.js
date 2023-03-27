@@ -52,6 +52,11 @@ padding: 10vw;
 color:white;
 `
 
+const LinksContainer = styled.div`
+display: flex;
+
+`
+
 const ProfileImg = styled.img`
 height: 40vh;
 width: 40vw;
