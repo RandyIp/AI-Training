@@ -3,22 +3,22 @@ import styled from 'styled-components';
 import Intro from './intro.js'
 import Projects from './projects.js'
 import About from './about.js'
+import { useRef } from 'react'
 
-const Homepage = () => {
+const Homepage = ({ HomeRef, ProjectRef, AboutRef }) => {
   return (<Container>
-    <Section>
+    <Section ref={HomeRef}>
       <Intro />
     </Section>
 
-    <Section>
+    <Section ref={ProjectRef}>
       <Projects />
     </Section>
 
-    <Section>
+    <Section ref={AboutRef}>
       <About />
     </Section>
   </Container>
-
   )
 }
 

@@ -1,6 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import ProfilePic from '../images/ProfilePic.jpeg'
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import EmailIcon from '@mui/icons-material/Email';
 
 const About = () => {
   return (
@@ -16,6 +19,31 @@ const About = () => {
           </Text2>
         </TextContainer>
         <ImageContainer>
+          <LinksContainer>
+            <LinkedInIcon
+              fontSize='large'
+              style={{
+                margin: '1vw',
+                cursor: 'pointer'
+              }}
+              onClick={() => window.open('https://www.linkedin.com/in/randy-ip/')}
+            />
+            <GitHubIcon
+              fontSize='large'
+              style={{
+                margin: '1vw',
+                cursor: 'pointer'
+              }}
+              onClick={() => window.open('https://github.com/RandyIp')}
+            />
+            <EmailIcon
+              fontSize='large'
+              style={{
+                margin: '1vw',
+                cursor: 'pointer'
+              }}
+            />
+          </LinksContainer>
           <ProfileImg src={ProfilePic} />
         </ImageContainer>
       </FlexContainer>
@@ -48,13 +76,16 @@ color: beige;
 `
 
 const ImageContainer = styled.div`
+display: flex;
+flex-direction: column;
 padding: 10vw;
 color:white;
+align-items: center
 `
 
 const LinksContainer = styled.div`
 display: flex;
-
+color: beige;
 `
 
 const ProfileImg = styled.img`

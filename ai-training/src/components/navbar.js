@@ -1,13 +1,25 @@
 import React from 'react';
 import styled from 'styled-components';
 import MenuIcon from '@mui/icons-material/Menu';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 
-const Navbar = () => {
+const Navbar = ({ page, setPage, setScroll }) => {
   return (
     <Container>
       <Header>Randy Ip</Header>
       <Menu>
-        <MenuIcon fontSize='large' />
+        {page != 'Menu' && <MenuIcon
+          fontSize='large'
+          onClick={() => {
+            setPage('Menu')
+            setScroll()
+          }}
+        />}
+        {page == 'Menu' && <ArrowBackIosNewIcon
+          fontSize='large'
+          onClick={() => setPage('Home')}
+        />
+        }
       </Menu>
     </Container>
   )
@@ -26,12 +38,15 @@ display: flex;
 const Header = styled.h1`
 color:black;
 width: max-content;
-margin: 0;
+margin: 0 0 0 1vw;
 `
 
 const Menu = styled.div`
-position: relative;
-float: right;
-fontSize: large;
+position: fixed;
+right: 1vw;
+cursor: pointer;
+&:hover{
+  background-color:white;
+}
 `
 export default Navbar
