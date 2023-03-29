@@ -23,13 +23,16 @@ const Homepage = ({ HomeRef, ProjectRef, AboutRef }) => {
 }
 
 const Container = styled.div`
-margin-top: 5vh
+width: 100vw;
+max-width: 100%;
+background-color: black;
 `
 const Section = styled.div`
 position:relative;
 background-color: black;
 height: 100vh;
 width: 100vw;
+max-width: 100%;
 margin:0;
 `
 

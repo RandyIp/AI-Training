@@ -14,5 +14,6 @@ const Container = styled.div`
 
 const Header = styled.h1`
 color:white;
+padding-left: 10vw
 `
 export default Projects

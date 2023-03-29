@@ -15,10 +15,6 @@ const Intro = () => {
 
 const FlexContainer = styled.div`
 display: flex;
-background-color: black;
-height: 100vh;
-width: 100vw;
-margin:0;
 `
 
 const Header = styled.h1`
@@ -27,7 +23,6 @@ margin-left:10vw;
 margin-top: 0vh;
 padding-top:30vh;
 color: white;
-z-index: 1;
 `
 
 const IntroImg = styled.img`

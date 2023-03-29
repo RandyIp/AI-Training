@@ -4,7 +4,6 @@ import styled from 'styled-components'
 const Menu = ({ setPage, HomeRef, setScroll }) => {
   return (
     <MenuContainer>
-      <p>I am menu</p>
       <List>
         <Options
           onClick={() => {
@@ -32,9 +31,10 @@ const Menu = ({ setPage, HomeRef, setScroll }) => {
 }
 
 const MenuContainer = styled.div`
-margin-top: 5vh;
 background-color: black;
 height:100vh;
+margin: 0;
+padding: 0
 `
 
 const List = styled.div`

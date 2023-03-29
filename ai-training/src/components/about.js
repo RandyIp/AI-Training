@@ -56,6 +56,7 @@ const Container = styled.div`
 
 const Header = styled.h1`
 color:white;
+padding: 5vw 0 0 10vw;
 `
 
 const FlexContainer = styled.div`
@@ -64,7 +65,7 @@ color:white;
 `
 
 const TextContainer = styled.div`
-padding: 10vw;
+padding: 5vw 10vw 0 10vw;
 `
 
 const Text1 = styled.p`
@@ -78,7 +79,7 @@ color: beige;
 const ImageContainer = styled.div`
 display: flex;
 flex-direction: column;
-padding: 10vw;
+padding: 0vw 5vw 0 0;
 color:white;
 align-items: center
 `

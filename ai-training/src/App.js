@@ -34,6 +34,5 @@ function App() {
 
 const Container = styled.div`
 background-color:black;
-overflow: none;
 `
 export default App;
