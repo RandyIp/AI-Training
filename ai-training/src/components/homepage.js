@@ -5,14 +5,14 @@ import Projects from './projects.js'
 import About from './about.js'
 import { useRef } from 'react'
 
-const Homepage = ({ HomeRef, ProjectRef, AboutRef }) => {
+const Homepage = ({ HomeRef, ProjectRef, AboutRef, setPage }) => {
   return (<Container>
     <Section ref={HomeRef}>
       <Intro />
     </Section>
 
-    <Section ref={ProjectRef}>
-      <Projects />
+    <Section ref={ProjectRef} >
+      <Projects setPage={setPage} />
     </Section>
 
     <Section ref={AboutRef}>

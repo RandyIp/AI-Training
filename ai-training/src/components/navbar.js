@@ -6,7 +6,7 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 const Navbar = ({ page, setPage, setScroll }) => {
 
   const switchPage = () => {
-    if (page != 'Menu') {
+    if (page == 'Home') {
       setPage('Menu')
       setScroll()
     }
@@ -17,8 +17,8 @@ const Navbar = ({ page, setPage, setScroll }) => {
     <Container>
       <Header>Randy Ip</Header>
       <Menu onClick={() => switchPage()}>
-        {page != 'Menu' && <MenuIcon fontSize='large' />}
-        {page == 'Menu' && <ArrowBackIosNewIcon fontSize='large' />}
+        {page == 'Home' && <MenuIcon fontSize='large' />}
+        {page != 'Home' && <ArrowBackIosNewIcon fontSize='large' />}
       </Menu>
     </Container>
   )

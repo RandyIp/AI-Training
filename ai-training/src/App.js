@@ -5,6 +5,7 @@ import { useState, useEffect, useRef } from 'react';
 import Homepage from './components/homepage.js'
 import Navbar from './components/navbar.js'
 import Menu from './components/menu.js'
+import FlappybirdAI from './components/FlappybirdAI.js';
 
 function App() {
   const [page, setPage] = useState('Home')
@@ -17,6 +18,17 @@ function App() {
     if (scroll == 'About') AboutRef.current.scrollIntoView()
   }, [scroll])
 
+  // function usePrevious(value) {
+  //   const ref = useRef();
+  //   useEffect(() => {
+  //     ref.current = value;
+  //   });
+  //   return ref.current;
+  // }
+
+  // const prevPage = usePrevious(page)
+
+  // test useEffect, see if it pulls up previous values, but I don't think so. If not then just put the previous value in each change, shouldn't be that many
   return (
     <Container>
       <Navbar page={page} setPage={setPage} setScroll={setScroll} />
@@ -26,8 +38,9 @@ function App() {
         setScroll={setScroll}
       />}
       {page == 'Home' && <Homepage
-        HomeRef={HomeRef} ProjectRef={ProjectRef} AboutRef={AboutRef}
+        HomeRef={HomeRef} ProjectRef={ProjectRef} AboutRef={AboutRef} setPage={setPage}
       />}
+      {page == 'project1' && <FlappybirdAI />}
     </Container>
   );
 }
