@@ -4,13 +4,15 @@ import styled from 'styled-components';
 
 const FlappybirdAI = () => {
   const [gameState, setGameState] = useState('stop')
-
+  // adding updates
   const gameHeight = 500
   const gameWidth = 500
   return (
     <Container>
       <GameContainer gameHeight={gameHeight} gameWidth={gameWidth}>
         {gameState == 'start' && <Bird gameHeight={gameHeight} gameWidth={gameWidth} />}
+        {gameState == 'stop' && <ButtonContainer>
+        </ButtonContainer>}
       </GameContainer>
       <Description>rando text</Description>
     </Container>
@@ -44,6 +46,11 @@ left: ${props => props.gameWidth / 25 + 'px'};
 top: ${props => props.gameHeight * 24 / 50 + 'px'};
 `
 
+const ButtonContainer = styled.div`
+height: ${props => props.gameHeight / 50 + 'px'};
+width: 100%;
+display: flex;
+`
 const Description = styled.p`
 color: white;
 `
