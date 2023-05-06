@@ -6,6 +6,7 @@ import Homepage from './components/homepage.js'
 import Navbar from './components/navbar.js'
 import Menu from './components/menu.js'
 import FlappybirdAI from './components/FlappybirdAI.js';
+import NeuralNetworkVisual from './components/NeuralNetworkVisual.js'
 
 function App() {
   const [page, setPage] = useState('Home')
@@ -40,7 +41,8 @@ function App() {
       {page == 'Home' && <Homepage
         HomeRef={HomeRef} ProjectRef={ProjectRef} AboutRef={AboutRef} setPage={setPage}
       />}
-      {page == 'project1' && <FlappybirdAI />}
+      {page == 'project1' && <NeuralNetworkVisual />}
+      {page == 'project3' && <FlappybirdAI />}
     </Container>
   );
 }

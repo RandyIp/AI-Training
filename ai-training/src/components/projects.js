@@ -6,6 +6,10 @@ const Projects = ({ setPage }) => {
     <Container>
       <Header>Projects</Header>
       <Card onClick={() => setPage('project1')}>
+        <ProjectTitle>Neural Network Visualization</ProjectTitle>
+        <ProjectDesc>Observe how a neural network works on a MNIST dataset</ProjectDesc>
+      </Card>
+      <Card onClick={() => setPage('project3')}>
         <ProjectTitle>Flappy Bird AI</ProjectTitle>
         <ProjectDesc>Watch an AI play Flappy Bird. Generational learning.</ProjectDesc>
       </Card>
@@ -33,6 +37,7 @@ height: max-content;
 color: white;
 border: 2px solid #00ff7f;
 cursor: pointer;
+margin: 0 0 1em 0;
 &: hover {
   background-color: #006400;
 }
