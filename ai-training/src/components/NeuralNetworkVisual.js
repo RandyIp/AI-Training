@@ -3,11 +3,12 @@ import { useState, useEffect, useRef } from 'react'
 import styled from 'styled-components';
 import DrawingBoard from './mini-components/DrawingBoard.js'
 import * as tf from '@tensorflow/tfjs';
+import data from '../fakeServer/models.js'
 
 const NeuralNetwork = () => {
 
-  const pixelColumns = 28
-  const pixelRows = 28
+  const pixelColumns = 20
+  const pixelRows = 20
   const gridArray = Array.from(Array(pixelColumns * pixelRows).keys())
   // const [drawingBoard, setDrawingBoard] = useState(Array(pixelRows).fill(Array(pixelColumns).fill(0)))
   const [drawingBoard, setDrawingBoard] = useState(Array(pixelColumns * pixelRows).fill(0))
@@ -19,14 +20,10 @@ const NeuralNetwork = () => {
   //   setDrawingBoard(temp)
   // }
 
-  const draw = (coordinate) => {
-    var temp = [...drawingBoard]
-    temp[coordinate] = 1
-    setDrawingBoard(temp)
-  }
+  const drawing = useRef(false)
 
   return (
-    <Container>
+    <Container onMouseDown={() => drawing.current = true} onMouseUp={() => drawing.current = false}>
       <Filler />
       <UpperContainer>
         <Visualization></Visualization>
@@ -34,11 +31,12 @@ const NeuralNetwork = () => {
           <DrawingBoard
             pixelColumns={pixelColumns}
             pixelRows={pixelRows}
+            drawing={drawing}
           />
         </DrawingBoardContainer>
       </UpperContainer>
       <Description>
-        Use the right drawing board to draw a number between 0 and 9 to see how an AI would use neural networks to predict your number. <br /> Alternatively, draw something random and see what number the AI thinks it is.
+        Use the right drawing board to draw a number between 0 and 9 to see how an AI would use neural networks to predict your  number. (drag mouse slowly and hold down the mouse button) <br /> Alternatively, draw something random and see what number the AI thinks it is.
       </Description>
     </Container>
   )
