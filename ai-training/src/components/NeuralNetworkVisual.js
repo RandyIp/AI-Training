@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from 'react'
 import styled from 'styled-components';
 import DrawingBoard from './mini-components/DrawingBoard.js'
 import * as tf from '@tensorflow/tfjs';
-import data from '../fakeServer/models.js'
+import formulas from '../fakeServer/formulas.js'
 
 const NeuralNetwork = () => {
 
