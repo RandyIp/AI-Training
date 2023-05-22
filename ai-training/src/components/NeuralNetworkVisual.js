@@ -10,17 +10,12 @@ const NeuralNetwork = () => {
   const pixelColumns = 20
   const pixelRows = 20
   const gridArray = Array.from(Array(pixelColumns * pixelRows).keys())
-  // const [drawingBoard, setDrawingBoard] = useState(Array(pixelRows).fill(Array(pixelColumns).fill(0)))
   const [drawingBoard, setDrawingBoard] = useState(Array(pixelColumns * pixelRows).fill(0))
 
-  // const draw = (coordinate) => {
-  //   var temp = [...drawingBoard]
-  //   const newCoordinates = [Math.floor(coordinate/pixelColumns), coordinate%pixelColumns]
-  //   temp[newCoordinates[0], newCoordinates[1]] = 1
-  //   setDrawingBoard(temp)
-  // }
-
   const drawing = useRef(false)
+
+  // let test = [[1, 3], [2, 2], [3, 1]]
+  // console.log(formulas.covMat(test))
 
   return (
     <Container onMouseDown={() => drawing.current = true} onMouseUp={() => drawing.current = false}>
