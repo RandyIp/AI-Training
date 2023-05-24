@@ -7,8 +7,8 @@ import formulas from '../fakeServer/formulas.js'
 
 const NeuralNetwork = () => {
 
-  const pixelColumns = 20
-  const pixelRows = 20
+  const pixelColumns = 28
+  const pixelRows = 28
   const gridArray = Array.from(Array(pixelColumns * pixelRows).keys())
   const [drawingBoard, setDrawingBoard] = useState(Array(pixelColumns * pixelRows).fill(0))
 
