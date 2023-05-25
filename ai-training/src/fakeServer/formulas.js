@@ -1,5 +1,6 @@
 import data from './db.json'
 import { SVD } from 'svd-js'
+import { eigs, inv, multiply, transpose } from 'mathjs'
 
 const formulas = {
   'standardize': (X) => {
@@ -9,9 +10,9 @@ const formulas = {
     let numerator = 0
     for (let i of X) numerator += (i - Xmean) ** 2
     const SD = Math.sqrt(numerator / X.length)
-    let newX = []
-    for (let i of X) newX.push((i - Xmean) / SD)
-    return newX
+    let standardX = []
+    for (let i of X) standardX.push((i - Xmean) / SD)
+    return standardX
   },
   // write covariance formula assumes matrix is array of arrays
   // X and Y are the number of the columns you want to get covariance of
@@ -55,13 +56,31 @@ const formulas = {
   },
   // eigenvalues and vectors
   'eigen': (X) => {
-
+    return eigs(X)
   },
   // projection matrix for future use?
+  //A(A^tA)^−1 A^t=P
   'projection': (X) => {
-
+    return multiply(X, inv(multiply(transpose(X), X)), transpose(X))
+  },
+  'projectVector': (X, v) => {
+    const diff = v.length - X[0].length
+    if (diff < 0) {
+      alert('error, projecting into higher space')
+      return
+    }
+    let zeroArray = Array(diff).fill(0)
+    for (let i = 0; i < X.length; i++) {
+      X[i] = X[i].concat(zeroArray)
+    }
+    return multiply(X, v)
   }
 }
+
+let test = [[-5, -4, 2], [-2, -2, 2], [4, 2, 2]]
+let v = [1, 2, 3, 4]
+console.log(formulas.projectVector(formulas.projection(test), v))
+// console.log(eigs(test))
 
 // let newData = [...data[0][0]]
 // for (let i = 0; i < newData.length; i++) {
@@ -76,9 +95,10 @@ const formulas = {
 
 // while (j <= 784) {
 //   a.push(newerData.slice(i, j))
-//   i += 20
-//   j += 20
+//   i += 28
+//   j += 28
 // }
+
 
 // let a = formulas.covMat(data[0])
 
