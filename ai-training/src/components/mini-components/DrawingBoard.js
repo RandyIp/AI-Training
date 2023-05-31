@@ -2,6 +2,7 @@ import React from 'react';
 import { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import formulas from '../../fakeServer/formulas.js'
 
 const DrawingBoard = ({ pixelColumns, pixelRows, drawing }) => {
   // --------------------------------------- Admin ---------------------------------------
@@ -22,10 +23,14 @@ const DrawingBoard = ({ pixelColumns, pixelRows, drawing }) => {
     }
     else {
       axios.post('http://localhost:3000/' + numberToAdd.current,
-        drawingBoard,
+        { "data": drawingBoard },
         { headers: { 'content-type': 'application/json' } })
     }
     setDrawingBoard(Array(pixelColumns * pixelRows).fill(0))
+  }
+
+  const train = () => {
+
   }
 
   // --------------------------------------- Admin ---------------------------------------
@@ -60,16 +65,19 @@ const DrawingBoard = ({ pixelColumns, pixelRows, drawing }) => {
         </select>
       </ButtonContainer>
       <ButtonContainer>
-        <Button onClick={() => addData()}>Train</Button>
+        <Button onClick={() => addData()}>Add Data</Button>
+      </ButtonContainer>
+      <ButtonContainer>
+        <Button onClick={() => train()}>Train</Button>
       </ButtonContainer>
     </LowerContainer>}
     {!admin && <LowerContainer>
       <ButtonContainer>
-        <Button>Analyze</Button>
       </ButtonContainer>
       <ButtonContainer>
         <Button onClick={() => setDrawingBoard(Array(pixelColumns * pixelRows).fill(0))}>Clear</Button>
       </ButtonContainer>
+      <ButtonContainer />
     </LowerContainer>}
   </DrawingBoardContainer>)
 }
@@ -97,7 +105,7 @@ object-fit:cover;
 
 const LowerContainer = styled.div`
 display: grid;
-grid-template-columns: 1fr 1fr;
+grid-template-columns: 1fr 1fr 1fr;
 height: 8vh;
 width: 50vw;
 `

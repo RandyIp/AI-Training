@@ -1,6 +1,10 @@
 import data from './db.json'
 import { SVD } from 'svd-js'
 import { eigs, inv, multiply, transpose } from 'mathjs'
+// note, mathjs reads arrays as rows, i.e.
+// A = [[0, 1, 2]
+// [3, 4, 5]
+// [6, 7, 8]]
 
 const formulas = {
   'standardize': (X) => {
@@ -74,12 +78,50 @@ const formulas = {
       X[i] = X[i].concat(zeroArray)
     }
     return multiply(X, v)
+  },
+  // percent is in decimals i guess?
+  'PCA': (dataSet, percent) => {
+    let covMat = formulas.covMat(dataSet)
+    let eigen = formulas.eigen(covMat)
+    let totalVariance = 0
+    let explainedVariance = 0
+    for (let i of eigen.values) totalVariance += i
+    let eigenvaluesSorted = [...eigen.values]
+    eigenvaluesSorted.sort()
+    let topEigenvalues = []
+    let featureMatrix = Array.from(Array(dataSet[0].length), () => [])
+    for (let i of eigenvaluesSorted) {
+      explainedVariance += i
+      topEigenvalues.push(i)
+      if (explainedVariance / totalVariance > percent) break
+    }
+    // need to find eigen vectors relevant to the highest eigenvalues and keep track of the feature matrix
+    for (let i of topEigenvalues) {
+      const index = eigen.values.indexOf(i)
+      for (let j = 0; j < featureMatrix.length; j++) {
+        featureMatrix[j].push(eigen.vectors[j][index])
+      }
+    }
+    // then multiply feature matrix by dataSet
+    return multiply(transpose(featureMatrix), transpose(dataSet))
+    // return PCA matrix
+  },
+  'truncatedSVD': () => {
+
   }
 }
 
-let test = [[-5, -4, 2], [-2, -2, 2], [4, 2, 2]]
-let v = [1, 2, 3, 4]
-console.log(formulas.projectVector(formulas.projection(test), v))
+const array0to9 = Array.from(Array(10).keys())
+let dataSet = []
+for (let i of array0to9) {
+  for (let j of data[i]) {
+    dataSet.push(j.data)
+  }
+}
+
+// console.log(formulas.PCA(dataSet))
+
+// let test = [[1, 0, 0], [0, 1, 0], [0, 0, 1]]
 // console.log(eigs(test))
 
 // let newData = [...data[0][0]]
