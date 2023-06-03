@@ -18,6 +18,61 @@ const formulas = {
     for (let i of X) standardX.push((i - Xmean) / SD)
     return standardX
   },
+  'sparseTransform': (sparseMatrix) => {
+    let newData = [...sparseMatrix]
+    for (let i = 0; i < newData.length; i++) {
+      if (newData[i] == 0) newData[i] = 0.1
+    }
+    return newData
+  },
+  'truncatedSVD': (dataPoint, matrixLength, percent = 0.95) => {
+    // creates the matrix from vector
+    let a = []
+    let i = 0
+    let j = matrixLength
+
+    while (j <= matrixLength ** 2) {
+      a.push(dataPoint.slice(i, j))
+      i += matrixLength
+      j += matrixLength
+    }
+
+    // perform SVD
+    const { u, v, q } = SVD(a)
+
+    // sort out and calculate top eigenvalues
+    let eigenvaluesSorted = [...q]
+    eigenvaluesSorted.sort().reverse()
+    let topEigenvalues = []
+    let totalVariance = 0
+    let explainedVariance = 0
+    for (let i of eigenvaluesSorted) {
+      totalVariance += i
+    }
+    for (let i of eigenvaluesSorted) {
+      topEigenvalues.push(i)
+      explainedVariance += i
+      if (explainedVariance / totalVariance > percent) break
+    }
+    // create new U, V, Q
+    let indexArray = []
+    let newU = Array.from(Array(v.length), () => [])
+    let newV = []
+    let newQ = []
+    for (let i of topEigenvalues) {
+      indexArray.push(q.indexOf(i))
+    }
+    for (let i = 0; i < indexArray.length; i++) {
+      newV.push(v[indexArray[i]])
+      for (let j = 0; j < u.length; j++) {
+        newU[j].push(u[j][indexArray[i]])
+      }
+      let tempArray = (Array(indexArray.length).fill(0))
+      tempArray[i] = q[indexArray[i]]
+      newQ.push(tempArray)
+    }
+    return (multiply(newU, newQ, newV))
+  },
   // write covariance formula assumes matrix is array of arrays
   // X and Y are the number of the columns you want to get covariance of
   // dataset = [ [data data data], [data data data]] each array would be a column
@@ -80,14 +135,14 @@ const formulas = {
     return multiply(X, v)
   },
   // percent is in decimals i guess?
-  'PCA': (dataSet, percent) => {
+  'PCA': (dataSet, percent = 0.95) => {
     let covMat = formulas.covMat(dataSet)
     let eigen = formulas.eigen(covMat)
     let totalVariance = 0
     let explainedVariance = 0
     for (let i of eigen.values) totalVariance += i
     let eigenvaluesSorted = [...eigen.values]
-    eigenvaluesSorted.sort()
+    eigenvaluesSorted.sort().reverse()
     let topEigenvalues = []
     let featureMatrix = Array.from(Array(dataSet[0].length), () => [])
     for (let i of eigenvaluesSorted) {
@@ -105,47 +160,21 @@ const formulas = {
     // then multiply feature matrix by dataSet
     return multiply(transpose(featureMatrix), transpose(dataSet))
     // return PCA matrix
-  },
-  'truncatedSVD': () => {
-
   }
 }
 
-const array0to9 = Array.from(Array(10).keys())
-let dataSet = []
-for (let i of array0to9) {
-  for (let j of data[i]) {
-    dataSet.push(j.data)
-  }
-}
-
-// console.log(formulas.PCA(dataSet))
-
-// let test = [[1, 0, 0], [0, 1, 0], [0, 0, 1]]
-// console.log(eigs(test))
-
-// let newData = [...data[0][0]]
-// for (let i = 0; i < newData.length; i++) {
-//   if (newData[i] == 0) newData[i] = 0.1
+// const array0to9 = Array.from(Array(10).keys())
+// let dataSet = []
+// for (let i of array0to9) {
+//   for (let j of data[i]) {
+//     dataSet.push(j.data)
+//   }
 // }
+// console.log(formulas.PCA(dataSet, 0.95))
 
-// let newerData = formulas.standardize(newData)
-
-// let a = []
-// let i = 0
-// let j = 28
-
-// while (j <= 784) {
-//   a.push(newerData.slice(i, j))
-//   i += 28
-//   j += 28
-// }
+// let test = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+// console.log(formulas.truncatedSVD(test, 3))
 
 
-// let a = formulas.covMat(data[0])
 
-// const { u, v, q } = SVD(a)
-// console.log(u)
-// console.log(v)
-// console.log(q)
 export default formulas
