@@ -6,7 +6,7 @@ const Projects = ({ setPage }) => {
     <Container>
       <Header>Projects</Header>
       <Card onClick={() => setPage('project1')}>
-        <ProjectTitle>Neural Network Visualization</ProjectTitle>
+        <ProjectTitle>Machine Learning Visualization</ProjectTitle>
         <ProjectDesc>Observe how a neural network works on a MNIST dataset</ProjectDesc>
       </Card>
       <Card onClick={() => setPage('project3')}>

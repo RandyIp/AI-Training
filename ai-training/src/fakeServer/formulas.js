@@ -7,6 +7,7 @@ import { eigs, inv, multiply, transpose } from 'mathjs'
 // [6, 7, 8]]
 
 const formulas = {
+  // ------------------------- STANDARDIZATION & SVD -------------------------
   'standardize': (X) => {
     let Xsum = 0
     for (let i of X) Xsum += i
@@ -56,23 +57,37 @@ const formulas = {
     }
     // create new U, V, Q
     let indexArray = []
-    let newU = Array.from(Array(v.length), () => [])
-    let newV = []
+    let newU = Array.from(Array(u.length), () => [])
+    let newV = Array.from(Array(v.length), () => [])
     let newQ = []
     for (let i of topEigenvalues) {
       indexArray.push(q.indexOf(i))
     }
     for (let i = 0; i < indexArray.length; i++) {
-      newV.push(v[indexArray[i]])
       for (let j = 0; j < u.length; j++) {
         newU[j].push(u[j][indexArray[i]])
+      }
+      for (let j = 0; j < v.length; j++) {
+        newV[j].push(v[j][indexArray[i]])
       }
       let tempArray = (Array(indexArray.length).fill(0))
       tempArray[i] = q[indexArray[i]]
       newQ.push(tempArray)
     }
-    return (multiply(newU, newQ, newV))
+    return (multiply(newU, newQ, transpose(newV)))
   },
+  // Checking that your SVD is likely correct
+  'Frobenius': (matA, matB) => {
+    if (matA.length != matB.length || matA[0].length != matB[0].length) { return 'error, dimensions dont match' }
+    let distance = 0
+    for (let i = 0; i < matA.length; i++) {
+      for (let j = 0; j < matA[0].length; j++) {
+        distance += (matA[i][j] - matB[i][j]) ** 2
+      }
+    }
+    return Math.sqrt(distance)
+  },
+  // ------------------------- COVARIANCE -------------------------
   // write covariance formula assumes matrix is array of arrays
   // X and Y are the number of the columns you want to get covariance of
   // dataset = [ [data data data], [data data data]] each array would be a column
@@ -113,6 +128,7 @@ const formulas = {
     }
     return matrix
   },
+  // ------------------------- EIGENS AND PROJECTIONS -------------------------
   // eigenvalues and vectors
   'eigen': (X) => {
     return eigs(X)
@@ -162,19 +178,5 @@ const formulas = {
     // return PCA matrix
   }
 }
-
-// const array0to9 = Array.from(Array(10).keys())
-// let dataSet = []
-// for (let i of array0to9) {
-//   for (let j of data[i]) {
-//     dataSet.push(j.data)
-//   }
-// }
-// console.log(formulas.PCA(dataSet, 0.95))
-
-// let test = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-// console.log(formulas.truncatedSVD(test, 3))
-
-
 
 export default formulas
