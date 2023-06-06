@@ -1,39 +1,95 @@
 import React from 'react';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import formulas from '../../fakeServer/formulas.js'
+import data from '../../fakeServer/db.json'
 
 const DrawingBoard = ({ pixelColumns, pixelRows, drawing }) => {
   // --------------------------------------- Admin ---------------------------------------
   // set to true or false to turn on and off, used to add data to data set
-  const admin = true
+  const admin = false
   const numberToAdd = useRef('0')
   const array0to9 = Array.from(Array(10).keys())
+
+  // adds data in truncatedSVD format
   const addData = () => {
-    if (numberToAdd.current == 'metadata') {
-      axios.get('http://localhost:3000/db')
-        .then(result => {
-          var metadata = {}
-          for (var i in array0to9) {
-            metadata[i] = result.data[i].length
-          }
-          console.log(metadata)
-        })
-    }
-    else {
-      axios.post('http://localhost:3000/' + numberToAdd.current,
-        { "data": drawingBoard },
-        { headers: { 'content-type': 'application/json' } })
-    }
+    axios.post('http://localhost:3000/' + numberToAdd.current,
+      { "data": formulas.truncatedSVD(drawingBoard, pixelRows) },
+      { headers: { 'content-type': 'application/json' } })
     setDrawingBoard(Array(pixelColumns * pixelRows).fill(0))
   }
 
   const train = () => {
+    // set dataSet in correct format
+    let dataSet = []
+    for (let i = 0; i < 10; i++) {
+      for (let j = 0; j < data[i].length; j++) {
+        dataSet.push(data[i][j].data.flat())
+      }
+    }
 
+    // Create PCA dataset and the projection matrix onto PCA plane
+    let PCADataSet = formulas.PCA(dataSet)
+    let projectionMatrix = formulas.projection(PCADataSet)
+    let labeledData = {}
+    let pointer = 0
+    for (let i = 0; i < 10; i++) {
+      labeledData[i] = []
+      for (let j = 0; j < data[i].length; j++) {
+        labeledData[i].push(PCADataSet[pointer++])
+      }
+    }
+
+    // Create binary SVMs
+    var result = {}
+    for (let i = 0; i < 10; i++) {
+      for (let j = i + 1; j < 10; j++) {
+        let dataPoints = []
+        for (let k of labeledData[i]) dataPoints.push(k)
+        for (let k of labeledData[j]) dataPoints.push(k)
+        let labels = Array(data[i].length).fill(-1).concat(Array(data[j].length).fill(1))
+        let SVM = formulas.svm(dataPoints, labels)
+        result['' + i + j] = {
+          'N': SVM.N,
+          'D': SVM.D,
+          'b': SVM.b,
+          'kernelType': SVM.kernelType,
+          'w': SVM.w,
+          "alpha": SVM.alpha,
+          "data": SVM.data,
+          "usew_": SVM.usew_,
+          "labels": SVM.labels
+        }
+      }
+    }
+
+    // Save training into server
+    axios.post('http://localhost:3000/projectionMatrix/',
+      { matrix: projectionMatrix },
+      { headers: { 'content-type': 'application/json' } })
+      .then(axios.post('http://localhost:3000/SVM/',
+        result,
+        { headers: { 'content-type': 'application/json' } }))
+      .then(alert('Training complete'))
   }
 
-  // --------------------------------------- Admin ---------------------------------------
+  const analyze = () => {
+    let i = 0
+    let j = 1
+    // let tempArray = formulas.projectVector(data.projectionMatrix.matrix, formulas.truncatedSVD(drawingBoard, pixelRows).flat())
+    console.log(data.projectionMatrix.matrix.length, data.projectionMatrix.matrix[0].length)
+    // while (j < 10) {
+    //   let temp = data.SVM['' + i + j]
+    //   Object.setPrototypeOf(temp, formulas.svmPrototype)
+    //   if (temp.predict([tempArray])[0] === 1) i = j
+    //   j += 1
+    // }
+    // alert('prediction is ' + i)
+  }
+
+  // --------------------------------------- End Admin ---------------------------------------
+
   const gridArray = Array.from(Array(pixelColumns * pixelRows).keys())
   // const [drawingBoard, setDrawingBoard] = useState(Array(pixelRows).fill(Array(pixelColumns).fill(0)))
   const [drawingBoard, setDrawingBoard] = useState(Array(pixelColumns * pixelRows).fill(0))
@@ -61,7 +117,6 @@ const DrawingBoard = ({ pixelColumns, pixelRows, drawing }) => {
           {array0to9.map(number => (
             <option value={number}>{number}</option>
           ))}
-          <option value='metadata'>meta data</option>
         </select>
       </ButtonContainer>
       <ButtonContainer>
@@ -73,6 +128,7 @@ const DrawingBoard = ({ pixelColumns, pixelRows, drawing }) => {
     </LowerContainer>}
     {!admin && <LowerContainer>
       <ButtonContainer>
+        <Button onClick={() => analyze()}> Analyze </Button>
       </ButtonContainer>
       <ButtonContainer>
         <Button onClick={() => setDrawingBoard(Array(pixelColumns * pixelRows).fill(0))}>Clear</Button>
