@@ -22,32 +22,32 @@ const DrawingBoard = ({ pixelColumns, pixelRows, drawing }) => {
 
   const train = () => {
     // set dataSet in correct format
-    let dataSet = []
-    for (let i = 0; i < 10; i++) {
-      for (let j = 0; j < data[i].length; j++) {
-        dataSet.push(data[i][j].data.flat())
-      }
-    }
+    // let dataSet = []
+    // for (let i = 0; i < 10; i++) {
+    //   for (let j = 0; j < data[i].length; j++) {
+    //     dataSet.push(formulas.standardize(data[i][j].data.flat()))
+    //   }
+    // }
 
-    // Create PCA dataset and the projection matrix onto PCA plane
-    let PCADataSet = formulas.PCA(dataSet)
-    let projectionMatrix = formulas.projection(PCADataSet)
-    let labeledData = {}
-    let pointer = 0
-    for (let i = 0; i < 10; i++) {
-      labeledData[i] = []
-      for (let j = 0; j < data[i].length; j++) {
-        labeledData[i].push(PCADataSet[pointer++])
-      }
-    }
+    // // Create PCA dataset and the projection matrix onto PCA plane
+    // let PCADataSet = formulas.PCA(dataSet)
+    // let projectionMatrix = formulas.projection(PCADataSet, true)
+    // let labeledData = {}
+    // let pointer = 0
+    // for (let i = 0; i < 10; i++) {
+    //   labeledData[i] = []
+    //   for (let j = 0; j < data[i].length; j++) {
+    //     labeledData[i].push(PCADataSet[pointer++])
+    //   }
+    // }
 
     // Create binary SVMs
     var result = {}
     for (let i = 0; i < 10; i++) {
       for (let j = i + 1; j < 10; j++) {
         let dataPoints = []
-        for (let k of labeledData[i]) dataPoints.push(k)
-        for (let k of labeledData[j]) dataPoints.push(k)
+        for (let k of data[i]) dataPoints.push(k.data.flat())
+        for (let k of data[j]) dataPoints.push(k.data.flat())
         let labels = Array(data[i].length).fill(-1).concat(Array(data[j].length).fill(1))
         let SVM = formulas.svm(dataPoints, labels)
         result['' + i + j] = {
@@ -57,7 +57,7 @@ const DrawingBoard = ({ pixelColumns, pixelRows, drawing }) => {
           'kernelType': SVM.kernelType,
           'w': SVM.w,
           "alpha": SVM.alpha,
-          "data": SVM.data,
+          // "data": SVM.data,
           "usew_": SVM.usew_,
           "labels": SVM.labels
         }
@@ -65,27 +65,27 @@ const DrawingBoard = ({ pixelColumns, pixelRows, drawing }) => {
     }
 
     // Save training into server
-    axios.post('http://localhost:3000/projectionMatrix/',
-      { matrix: projectionMatrix },
-      { headers: { 'content-type': 'application/json' } })
-      .then(axios.post('http://localhost:3000/SVM/',
-        result,
-        { headers: { 'content-type': 'application/json' } }))
+    // axios.patch('http://localhost:3000/projectionMatrix/',
+    //   { matrix: projectionMatrix },
+    //   { headers: { 'content-type': 'application/json' } }).then
+    (axios.patch('http://localhost:3000/SVM/',
+      result,
+      { headers: { 'content-type': 'application/json' } }))
       .then(alert('Training complete'))
   }
 
   const analyze = () => {
     let i = 0
     let j = 1
-    // let tempArray = formulas.projectVector(data.projectionMatrix.matrix, formulas.truncatedSVD(drawingBoard, pixelRows).flat())
-    console.log(data.projectionMatrix.matrix.length, data.projectionMatrix.matrix[0].length)
-    // while (j < 10) {
-    //   let temp = data.SVM['' + i + j]
-    //   Object.setPrototypeOf(temp, formulas.svmPrototype)
-    //   if (temp.predict([tempArray])[0] === 1) i = j
-    //   j += 1
-    // }
-    // alert('prediction is ' + i)
+    // let tempArray = formulas.projectVector(data.projectionMatrix.matrix, formulas.standardize(formulas.truncatedSVD(drawingBoard, pixelRows).flat()))
+    let tempArray = formulas.truncatedSVD(drawingBoard, pixelRows).flat()
+    while (j < 10) {
+      let temp = data.SVM['' + i + j]
+      Object.setPrototypeOf(temp, formulas.svmPrototype)
+      if (temp.predict([tempArray])[0] === 1) i = j
+      j += 1
+    }
+    alert('prediction is ' + i)
   }
 
   // --------------------------------------- End Admin ---------------------------------------
