@@ -1,11 +1,11 @@
 import React from 'react';
-import { useState, useRef } from 'react';
+import { useRef } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import formulas from '../../fakeServer/formulas.js'
 import data from '../../fakeServer/db.json'
 
-const DrawingBoard = ({ pixelColumns, pixelRows, drawing }) => {
+const DrawingBoard = ({ pixelColumns, pixelRows, drawing, drawingBoard, setDrawingBoard }) => {
   // --------------------------------------- Admin ---------------------------------------
   // set to true or false to turn on and off, used to add data to data set
   const admin = false
@@ -92,7 +92,6 @@ const DrawingBoard = ({ pixelColumns, pixelRows, drawing }) => {
 
   const gridArray = Array.from(Array(pixelColumns * pixelRows).keys())
   // const [drawingBoard, setDrawingBoard] = useState(Array(pixelRows).fill(Array(pixelColumns).fill(0)))
-  const [drawingBoard, setDrawingBoard] = useState(Array(pixelColumns * pixelRows).fill(0))
 
   const draw = (coordinate) => {
     var temp = [...drawingBoard]
@@ -154,8 +153,6 @@ height: 72vh;
 // border:1px solid black;
 const DrawingPixel = styled.div`
 background-color: ${prop => prop.color ? 'black' : 'white'};
-width: 100%;
-height: 100%;
 object-fit:cover;
 `
 
@@ -182,9 +179,5 @@ width: 12.5vw;
 &:hover{
   background-color:#00ff7f;
 }
-`
-
-const ClearButton = styled.div`
-background-color: green;
 `
 export default DrawingBoard

@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import styled from 'styled-components';
 import { useState, useEffect, useRef } from 'react';
@@ -14,9 +13,9 @@ function App() {
   const HomeRef = useRef(); const ProjectRef = useRef(); const AboutRef = useRef();
 
   useEffect(() => {
-    if (scroll == 'Home') HomeRef.current.scrollIntoView()
-    if (scroll == 'Project') ProjectRef.current.scrollIntoView()
-    if (scroll == 'About') AboutRef.current.scrollIntoView()
+    if (scroll === 'Home') HomeRef.current.scrollIntoView()
+    if (scroll === 'Project') ProjectRef.current.scrollIntoView()
+    if (scroll === 'About') AboutRef.current.scrollIntoView()
   }, [scroll])
 
   // function usePrevious(value) {
@@ -33,16 +32,16 @@ function App() {
   return (
     <Container>
       <Navbar page={page} setPage={setPage} setScroll={setScroll} />
-      {page == 'Menu' && <Menu
+      {page === 'Menu' && <Menu
         HomeRef={HomeRef} ProjectRef={ProjectRef} AboutRef={AboutRef}
         setPage={setPage}
         setScroll={setScroll}
       />}
-      {page == 'Home' && <Homepage
+      {page === 'Home' && <Homepage
         HomeRef={HomeRef} ProjectRef={ProjectRef} AboutRef={AboutRef} setPage={setPage}
       />}
-      {page == 'project1' && <NeuralNetworkVisual />}
-      {page == 'project3' && <FlappybirdAI />}
+      {page === 'project1' && <NeuralNetworkVisual />}
+      {page === 'project3' && <FlappybirdAI />}
     </Container>
   );
 }
