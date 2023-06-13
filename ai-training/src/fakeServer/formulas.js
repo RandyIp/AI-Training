@@ -30,6 +30,7 @@ const formulas = {
     return newData
   },
   'truncatedSVD': (dataPoint, matrixLength, percent = 0.95) => {
+
     // creates the matrix from vector
     let a = []
     let i = 0

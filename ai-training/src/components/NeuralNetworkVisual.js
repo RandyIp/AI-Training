@@ -35,7 +35,7 @@ const NeuralNetwork = () => {
         />
       </UpperContainer>
       <Description>
-        Use the drawing board on the left to draw a number between 0 and 9 to see how an AI would use linear algebra and matrices to predict your  number. <br /> (drag mouse slowly and hold down the mouse button) <br /> Alternatively, draw something random and see what number the AI thinks it is.
+        Use the drawing board on the left to draw a number between 0 and 9. Drag your mouse slowly and hold down the mouse button. <br /> The right side shows how a machine can use linear algebra to predict your number. Darker pixels represent dimensions that contain more information.  <br /> Alternatively, draw something random and see what number the AI thinks it is.
       </Description>
     </Container>
   )

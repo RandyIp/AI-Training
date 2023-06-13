@@ -74,19 +74,19 @@ const DrawingBoard = ({ pixelColumns, pixelRows, drawing, drawingBoard, setDrawi
       .then(alert('Training complete'))
   }
 
-  const analyze = () => {
-    let i = 0
-    let j = 1
-    // let tempArray = formulas.projectVector(data.projectionMatrix.matrix, formulas.standardize(formulas.truncatedSVD(drawingBoard, pixelRows).flat()))
-    let tempArray = formulas.truncatedSVD(drawingBoard, pixelRows).flat()
-    while (j < 10) {
-      let temp = data.SVM['' + i + j]
-      Object.setPrototypeOf(temp, formulas.svmPrototype)
-      if (temp.predict([tempArray])[0] === 1) i = j
-      j += 1
-    }
-    alert('prediction is ' + i)
-  }
+  // const analyze = () => {
+  //   let i = 0
+  //   let j = 1
+  //   // let tempArray = formulas.projectVector(data.projectionMatrix.matrix, formulas.standardize(formulas.truncatedSVD(drawingBoard, pixelRows).flat()))
+  //   let tempArray = formulas.truncatedSVD(drawingBoard, pixelRows).flat()
+  //   while (j < 10) {
+  //     let temp = data.SVM['' + i + j]
+  //     Object.setPrototypeOf(temp, formulas.svmPrototype)
+  //     if (temp.predict([tempArray])[0] === 1) i = j
+  //     j += 1
+  //   }
+  //   alert('prediction is ' + i)
+  // }
 
   // --------------------------------------- End Admin ---------------------------------------
 
@@ -127,7 +127,6 @@ const DrawingBoard = ({ pixelColumns, pixelRows, drawing, drawingBoard, setDrawi
     </LowerContainer>}
     {!admin && <LowerContainer>
       <ButtonContainer>
-        <Button onClick={() => analyze()}> Analyze </Button>
       </ButtonContainer>
       <ButtonContainer>
         <Button onClick={() => setDrawingBoard(Array(pixelColumns * pixelRows).fill(0))}>Clear</Button>
