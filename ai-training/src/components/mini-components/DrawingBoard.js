@@ -21,26 +21,6 @@ const DrawingBoard = ({ pixelColumns, pixelRows, drawing, drawingBoard, setDrawi
   }
 
   const train = () => {
-    // set dataSet in correct format
-    // let dataSet = []
-    // for (let i = 0; i < 10; i++) {
-    //   for (let j = 0; j < data[i].length; j++) {
-    //     dataSet.push(formulas.standardize(data[i][j].data.flat()))
-    //   }
-    // }
-
-    // // Create PCA dataset and the projection matrix onto PCA plane
-    // let PCADataSet = formulas.PCA(dataSet)
-    // let projectionMatrix = formulas.projection(PCADataSet, true)
-    // let labeledData = {}
-    // let pointer = 0
-    // for (let i = 0; i < 10; i++) {
-    //   labeledData[i] = []
-    //   for (let j = 0; j < data[i].length; j++) {
-    //     labeledData[i].push(PCADataSet[pointer++])
-    //   }
-    // }
-
     // Create binary SVMs
     var result = {}
     for (let i = 0; i < 10; i++) {
@@ -65,28 +45,12 @@ const DrawingBoard = ({ pixelColumns, pixelRows, drawing, drawingBoard, setDrawi
     }
 
     // Save training into server
-    // axios.patch('http://localhost:3000/projectionMatrix/',
-    //   { matrix: projectionMatrix },
-    //   { headers: { 'content-type': 'application/json' } }).then
     (axios.patch('http://localhost:3000/SVM/',
       result,
       { headers: { 'content-type': 'application/json' } }))
       .then(alert('Training complete'))
   }
 
-  // const analyze = () => {
-  //   let i = 0
-  //   let j = 1
-  //   // let tempArray = formulas.projectVector(data.projectionMatrix.matrix, formulas.standardize(formulas.truncatedSVD(drawingBoard, pixelRows).flat()))
-  //   let tempArray = formulas.truncatedSVD(drawingBoard, pixelRows).flat()
-  //   while (j < 10) {
-  //     let temp = data.SVM['' + i + j]
-  //     Object.setPrototypeOf(temp, formulas.svmPrototype)
-  //     if (temp.predict([tempArray])[0] === 1) i = j
-  //     j += 1
-  //   }
-  //   alert('prediction is ' + i)
-  // }
 
   // --------------------------------------- End Admin ---------------------------------------
 
@@ -99,7 +63,6 @@ const DrawingBoard = ({ pixelColumns, pixelRows, drawing, drawingBoard, setDrawi
     setDrawingBoard(temp)
   }
 
-  console.log(drawingBoard)
   return (<DrawingBoardContainer onMouseDown={() => drawing.current = true}>
     <Canvas pixelColumns={pixelColumns} pixelRows={pixelRows}>
       {gridArray.map(coordinate => (
