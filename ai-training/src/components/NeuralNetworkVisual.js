@@ -35,7 +35,7 @@ const NeuralNetwork = () => {
         />
       </UpperContainer>
       <Description>
-        Use the drawing board on the left to draw a number between 0 and 9. Drag your mouse slowly and hold down the mouse button. <br /> The right side shows how a machine can use linear algebra to predict your number. Darker pixels represent dimensions that contain more information.  <br /> Alternatively, draw something random and see what number the AI thinks it is.
+        Use the drawing board on the left to draw a number between 0 and 9. Drag your mouse slowly and hold down the mouse button. <br /> The right side shows how a machine can use linear algebra to predict your number. Darker pixels represent dimensions that contain more information.  <br /> Check out my {<a href="https://medium.com/@randyip9/basic-machine-learning-dimensionality-reduction-f9bbccf367b" target="_blank" rel="noreferrer">medium article</a>} to get a better intuition on how this works.
       </Description>
     </Container>
   )
@@ -64,14 +64,6 @@ const DrawingBoardContainer = styled.div`
 width: 50%;
 height: 100%;
 `
-
-// const blah = styled.div`
-// display: grid;
-// grid-template-columns: ${props => 'repeat(' + props.pixelColumns + ',' + 50 / props.pixelColumns + 'vw)'};
-// grid-template-rows: ${props => 'repeat(' + props.pixelRows + ',' + 72 / props.pixelRows + 'vh)'};
-// width: 100%;
-// height: 72vh;
-// `
 
 // border:1px solid black;
 // const DrawingPixel = styled.div`

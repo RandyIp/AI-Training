@@ -18,17 +18,6 @@ function App() {
     if (scroll === 'About') AboutRef.current.scrollIntoView()
   }, [scroll])
 
-  // function usePrevious(value) {
-  //   const ref = useRef();
-  //   useEffect(() => {
-  //     ref.current = value;
-  //   });
-  //   return ref.current;
-  // }
-
-  // const prevPage = usePrevious(page)
-
-  // test useEffect, see if it pulls up previous values, but I don't think so. If not then just put the previous value in each change, shouldn't be that many
   return (
     <Container>
       <Navbar page={page} setPage={setPage} setScroll={setScroll} />

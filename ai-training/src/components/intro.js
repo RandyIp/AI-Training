@@ -6,7 +6,7 @@ const Intro = () => {
   return (
     <FlexContainer>
       <Header>
-        Hi, I'm Randy. A software engineer who also has a passion for machine learning.
+        Hi there, nice to meet you! I'm Randy, an engineer skilled in both software and machine learning techniques.
       </Header>
       <IntroImg src={introImg} />
     </FlexContainer>

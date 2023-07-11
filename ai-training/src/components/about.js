@@ -12,11 +12,14 @@ const About = () => {
       <FlexContainer>
         <TextContainer>
           <Text1>
-            I'm a software engineer with an interest in machine learning as well. I have a master's in statistics with a specilization in machine learning. Shortly after, I attended a software engineering bootcamp to further reinforce my skills as a machine learning engineer. Now, I am equipped with both skills as a software engineer and machine learning engineer.
+            I'm a software/machine learning engineer and have both a master's in statistics specializing in machine learning and an advanced software engineering certificate from Hack Reactor. I have worked hard over the years to build up my skills in the fields and will be happy to share them with you if you're interested.
           </Text1>
           <Text2>
-            As an advent learner, I'm always reading learning about new technologies that show up over the years. If you think we'd work well together, feel free to contact me.
+            I have built time series machine learning models for Ethereum which helped predict and detect fraud within their system. Since I also understand databases as a software engineer, I was able to pull the data and build the models for them. With skills as both a software and machine learning engineer, I've been able to build end to end machine learning projects.
           </Text2>
+          <Text1>
+            Although I have a good breadth of knowledge, I keep looking for new ways to learn and improve my skillset. I'm always looking for the next big project to work on passionately.
+          </Text1>
         </TextContainer>
         <ImageContainer>
           <LinksContainer>
@@ -42,6 +45,11 @@ const About = () => {
                 margin: '1vw',
                 cursor: 'pointer'
               }}
+              onClick={(e) => {
+                window.location.href = "mailto:randyip9@gmail.com";
+                e.preventDefault()
+              }
+              }
             />
           </LinksContainer>
           <ProfileImg src={ProfilePic} />

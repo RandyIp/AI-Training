@@ -9,9 +9,10 @@ const Projects = ({ setPage }) => {
         <ProjectTitle>Machine Learning Visualization</ProjectTitle>
         <ProjectDesc>Observe how a neural network works on a MNIST dataset</ProjectDesc>
       </Card>
-      <Card onClick={() => setPage('project3')}>
+      {/* <Card onClick={() => setPage('project3')}> */}
+      <Card>
         <ProjectTitle>Flappy Bird AI</ProjectTitle>
-        <ProjectDesc>Watch an AI play Flappy Bird. Generational learning.</ProjectDesc>
+        <ProjectDesc>Coming Soon.</ProjectDesc>
       </Card>
     </Container>
   )
