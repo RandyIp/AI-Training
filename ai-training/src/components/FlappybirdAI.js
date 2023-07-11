@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState, useEffect, useRef } from 'react'
+import { useState, useRef } from 'react'
 import styled from 'styled-components';
 
 const FlappybirdAI = () => {
@@ -27,7 +27,7 @@ const FlappybirdAI = () => {
   }
 
   const flap = () => {
-    if (gameState == 'start') {
+    if (gameState === 'start') {
       setBirdPosition(birdPosition => birdPosition - (10 * gravity))
       birdPositionCounter.current -= (10 * gravity)
     }
@@ -36,8 +36,8 @@ const FlappybirdAI = () => {
   return (
     <Container>
       <GameContainer onClick={flap} gameHeight={gameHeight} gameWidth={gameWidth}>
-        {gameState == 'start' && <Bird birdPosition={birdPosition} gameHeight={gameHeight} gameWidth={gameWidth} />}
-        {gameState == 'stop' && <ButtonContainer>
+        {gameState === 'start' && <Bird birdPosition={birdPosition} gameHeight={gameHeight} gameWidth={gameWidth} />}
+        {gameState === 'stop' && <ButtonContainer>
           <StartButton onClick={startGame} gameHeight={gameHeight} gameWidth={gameWidth}>Start</StartButton>
           <StartButton onClick={() => setGameState('start')} gameHeight={gameHeight} gameWidth={gameWidth}>
             Train AI

@@ -21,12 +21,6 @@ const Container = styled.div`
 padding: 0 10vw 0 10vw;
 `
 
-const GameTrainingContainer = styled.div`
-display:flex;
-justify-content: space-evenly;
-height: 30vh;
-`
-
 const Header = styled.h1`
 color:white;
 `

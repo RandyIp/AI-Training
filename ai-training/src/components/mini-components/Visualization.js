@@ -1,5 +1,4 @@
 import React from 'react'
-import { useState } from 'react'
 import formulas from '../../fakeServer/formulas.js'
 import styled from 'styled-components';
 import ShadeGenerator from 'shade-generator'

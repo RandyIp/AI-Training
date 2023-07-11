@@ -1,4 +1,4 @@
-import data from './db.json'
+// import data from './db.json'
 import { SVD } from 'svd-js'
 import { eigs, inv, multiply, transpose } from 'mathjs'
 var svm = require("svm");
@@ -25,7 +25,7 @@ const formulas = {
   'sparseTransform': (sparseMatrix) => {
     let newData = [...sparseMatrix]
     for (let i = 0; i < newData.length; i++) {
-      if (newData[i] == 0) newData[i] = 0.1
+      if (newData[i] === 0) newData[i] = 0.1
     }
     return newData
   },
@@ -79,15 +79,15 @@ const formulas = {
       newQ.push(tempArray)
     }
     for (let i = 0; i < newU.length; i++) {
-      if (newU[i] == undefined) newU[i] = Array(matrixLength).fill(0)
-      if (newQ[i] == undefined) newQ[i] = Array(matrixLength).fill(0)
-      if (newV[i] == undefined) newV[i] = Array(matrixLength).fill(0)
+      if (newU[i] === undefined) newU[i] = Array(matrixLength).fill(0)
+      if (newQ[i] === undefined) newQ[i] = Array(matrixLength).fill(0)
+      if (newV[i] === undefined) newV[i] = Array(matrixLength).fill(0)
     }
     for (let i = 0; i < newU.length; i++) {
       for (let j = 0; j < newU.length; j++) {
-        if (newU[i][j] == undefined) newU[i][j] = 0
-        if (newQ[i][j] == undefined) newQ[i][j] = 0
-        if (newV[i][j] == undefined) newV[i][j] = 0
+        if (newU[i][j] === undefined) newU[i][j] = 0
+        if (newQ[i][j] === undefined) newQ[i][j] = 0
+        if (newV[i][j] === undefined) newV[i][j] = 0
       }
     }
     console.log(newU, newQ, transpose(newV))
@@ -95,7 +95,7 @@ const formulas = {
   },
   // Checking that your SVD is likely correct
   'Frobenius': (matA, matB) => {
-    if (matA.length != matB.length || matA[0].length != matB[0].length) { return 'error, dimensions dont match' }
+    if (matA.length !== matB.length || matA[0].length !== matB[0].length) { return 'error, dimensions dont match' }
     let distance = 0
     for (let i = 0; i < matA.length; i++) {
       for (let j = 0; j < matA[0].length; j++) {
@@ -109,7 +109,7 @@ const formulas = {
   // X and Y are the number of the columns you want to get covariance of
   // dataset = [ [data data data], [data data data]] each array would be a column
   'covFunc': (X, Y) => {
-    if (X.length != Y.length) return 'error mismatch length'
+    if (X.length !== Y.length) return 'error mismatch length'
     var Xsum = 0;
     var Ysum = 0;
     for (let i = 0; i < X.length; i++) {
@@ -208,7 +208,7 @@ const formulas = {
 // let projectionSquared = multiply(data.projectionMatrix.matrix, data.projectionMatrix.matrix)
 // for (let i = 0; i < data.projectionMatrix.matrix.length; i++) {
 //   for (let j = 0; j < data.projectionMatrix.matrix[i].length; j++) {
-//     if (data.projectionMatrix.matrix[i][j] != projectionSquared[i][j]) {
+//     if (data.projectionMatrix.matrix[i][j] !== projectionSquared[i][j]) {
 //       console.log('not equal')
 //       break
 //     }
