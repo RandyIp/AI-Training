@@ -78,6 +78,19 @@ const formulas = {
       tempArray[i] = q[indexArray[i]]
       newQ.push(tempArray)
     }
+    for (let i = 0; i < newU.length; i++) {
+      if (newU[i] == undefined) newU[i] = Array(matrixLength).fill(0)
+      if (newQ[i] == undefined) newQ[i] = Array(matrixLength).fill(0)
+      if (newV[i] == undefined) newV[i] = Array(matrixLength).fill(0)
+    }
+    for (let i = 0; i < newU.length; i++) {
+      for (let j = 0; j < newU.length; j++) {
+        if (newU[i][j] == undefined) newU[i][j] = 0
+        if (newQ[i][j] == undefined) newQ[i][j] = 0
+        if (newV[i][j] == undefined) newV[i][j] = 0
+      }
+    }
+    console.log(newU, newQ, transpose(newV))
     return (multiply(newU, newQ, transpose(newV)))
   },
   // Checking that your SVD is likely correct
@@ -191,17 +204,6 @@ const formulas = {
   },
   "svmPrototype": Object.getPrototypeOf(svmPrototype)
 }
-
-// let test = [[2, 0], [0, 2], [0, 3], [5, 6]]
-// let testVector = [1, 1, 1]
-
-// let testProjection = formulas.projection(test)
-// let testProjectedVector = formulas.projectVector(testProjection, testVector)
-
-// console.log(testProjectedVector)
-// console.log(testProjection)
-
-// console.log(data.projectionMatrix.matrix.length, data.projectionMatrix.matrix[0].length)
 
 // let projectionSquared = multiply(data.projectionMatrix.matrix, data.projectionMatrix.matrix)
 // for (let i = 0; i < data.projectionMatrix.matrix.length; i++) {

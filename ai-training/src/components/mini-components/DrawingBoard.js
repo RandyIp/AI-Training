@@ -99,6 +99,7 @@ const DrawingBoard = ({ pixelColumns, pixelRows, drawing, drawingBoard, setDrawi
     setDrawingBoard(temp)
   }
 
+  console.log(drawingBoard)
   return (<DrawingBoardContainer onMouseDown={() => drawing.current = true}>
     <Canvas pixelColumns={pixelColumns} pixelRows={pixelRows}>
       {gridArray.map(coordinate => (
