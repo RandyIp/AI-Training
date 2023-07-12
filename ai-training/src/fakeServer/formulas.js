@@ -90,7 +90,6 @@ const formulas = {
         if (newV[i][j] === undefined) newV[i][j] = 0
       }
     }
-    console.log(newU, newQ, transpose(newV))
     return (multiply(newU, newQ, transpose(newV)))
   },
   // Checking that your SVD is likely correct

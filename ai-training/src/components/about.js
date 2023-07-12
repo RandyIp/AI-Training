@@ -1,9 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import ProfilePic from '../images/ProfilePic.jpeg'
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import GitHubIcon from '@mui/icons-material/GitHub';
-import EmailIcon from '@mui/icons-material/Email';
+// import LinkedInIcon from '@mui/icons-material/LinkedIn';
+// import GitHubIcon from '@mui/icons-material/GitHub';
+// import EmailIcon from '@mui/icons-material/Email';
+import Resume from '../pdf/Resume.pdf'
 
 const About = () => {
   return (
@@ -12,17 +13,20 @@ const About = () => {
       <FlexContainer>
         <TextContainer>
           <Text1>
-            I'm a software/machine learning engineer and have both a master's in statistics specializing in machine learning and an advanced software engineering certificate from Hack Reactor. I have worked hard over the years to build up my skills in the fields and will be happy to share them with you if you're interested.
+            I'm a software/machine learning engineer with a master's in statistics specializing in machine learning and an advanced software engineering certificate from Hack Reactor.
           </Text1>
           <Text2>
-            I have built time series machine learning models for Ethereum which helped predict and detect fraud within their system. Since I also understand databases as a software engineer, I was able to pull the data and build the models for them. With skills as both a software and machine learning engineer, I've been able to build end to end machine learning projects.
+            One of my notable projects involved building time series machine learning models for Ethereum to predict and detect fraud within their system. As a software and machine learning engineer, I have successfully implemented several end-to-end machine learning projects.
           </Text2>
           <Text1>
-            Although I have a good breadth of knowledge, I keep looking for new ways to learn and improve my skillset. I'm always looking for the next big project to work on passionately.
+            My dedication to learning and expanding my skillset is evident in my progress over the years. I am happy to share my knowledge with others and always seek new opportunities to grow and develop.
           </Text1>
+          <ResumeButton onClick={() => window.open(Resume)}>
+            Resume (PDF)
+          </ResumeButton>
         </TextContainer>
         <ImageContainer>
-          <LinksContainer>
+          {/* <LinksContainer>
             <LinkedInIcon
               fontSize='large'
               style={{
@@ -51,7 +55,7 @@ const About = () => {
               }
               }
             />
-          </LinksContainer>
+          </LinksContainer> */}
           <ProfileImg src={ProfilePic} />
         </ImageContainer>
       </FlexContainer>
@@ -64,7 +68,9 @@ const Container = styled.div`
 
 const Header = styled.h1`
 color:white;
-padding: 5vw 0 0 10vw;
+padding: 5vw 0 0 0;
+text-align: center;
+text-decoration: underline;
 `
 
 const FlexContainer = styled.div`
@@ -87,15 +93,15 @@ color: beige;
 const ImageContainer = styled.div`
 display: flex;
 flex-direction: column;
-padding: 0vw 5vw 0 0;
+padding: 5vw 5vw 0 0;
 color:white;
 align-items: center
 `
 
-const LinksContainer = styled.div`
-display: flex;
-color: beige;
-`
+// const LinksContainer = styled.div`
+// display: flex;
+// color: beige;
+// `
 
 const ProfileImg = styled.img`
 height: 40vh;
@@ -103,5 +109,17 @@ width: 40vw;
 object-fit: contain;
 `
 
+const ResumeButton = styled.div`
+width: 40%
+height: max-content;
+color: white;
+border: 2px solid #00ff7f;
+cursor: pointer;
+margin: 5em 0 1em 0;
+text-align: center;
+&: hover {
+  background-color: #006400;
+}
+`
 
 export default About

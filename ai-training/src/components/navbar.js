@@ -1,24 +1,79 @@
 import React from 'react';
 import styled from 'styled-components';
-import MenuIcon from '@mui/icons-material/Menu';
+// import MenuIcon from '@mui/icons-material/Menu';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import EmailIcon from '@mui/icons-material/Email';
 
 const Navbar = ({ page, setPage, setScroll }) => {
 
-  const switchPage = () => {
-    if (page === 'Home') {
-      setPage('Menu')
-      setScroll()
-    }
-    else setPage('Home')
-  }
-
   return (
     <Container>
-      <Header>Randy Ip</Header>
-      <Menu onClick={() => switchPage()}>
+      <Left>
+        <Header
+          onClick={() => {
+            if (page === 'Home') setScroll('Home')
+            else setPage('Home')
+          }}
+        >
+          Randy Ip</Header>
+        {/* <Menu onClick={() => switchPage()}>
         {page === 'Home' && <MenuIcon fontSize='large' />}
         {page !== 'Home' && <ArrowBackIosNewIcon fontSize='large' />}
+      </Menu> */}
+
+        {page === 'Home' && <LinksContainer>
+          <LinkedInIcon
+            fontSize='large'
+            style={{
+              margin: '0.5vw',
+              cursor: 'pointer'
+            }}
+            onClick={() => window.open('https://www.linkedin.com/in/randy-ip/')}
+          />
+          <GitHubIcon
+            fontSize='large'
+            style={{
+              margin: '0.5vw',
+              cursor: 'pointer'
+            }}
+            onClick={() => window.open('https://github.com/RandyIp')}
+          />
+          <EmailIcon
+            fontSize='large'
+            style={{
+              margin: '0.5vw',
+              cursor: 'pointer'
+            }}
+            onClick={(e) => {
+              window.location.href = "mailto:randyip9@gmail.com";
+              e.preventDefault()
+            }
+            }
+          />
+        </LinksContainer>}
+      </Left>
+      <Menu>
+
+        {page === 'Home' && <Options
+          onClick={() => {
+            setPage('Home')
+            setScroll('Project')
+          }}>
+          Projects</Options>}
+        {page === 'Home' && <Options
+          onClick={() => {
+            setPage('Home')
+            setScroll('About')
+          }}>
+          About</Options>}
+        {page !== 'Home' &&
+          <ArrowContainer onClick={() => setPage('Home')}>
+            <ArrowBackIosNewIcon fontSize='large' />
+          </ArrowContainer>
+        }
+
       </Menu>
     </Container>
   )
@@ -40,6 +95,7 @@ color:beige;
 width: max-content;
 padding: 1vw 1vw 1vw 1vw;
 margin: 0;
+cursor: pointer;
 `
 
 const Menu = styled.div`
@@ -52,6 +108,31 @@ padding: 1vw 1vw 1vw 1vw;
 margin: 0;
 cursor: pointer;
 color: beige;
+`
+
+const Options = styled.div`
+height: 100%;
+width: 100%;
+padding: 1vw 1vw 1vw 1vw;
+justify-content: center;
+align-items: center;
+&:hover{
+  background-color:#00ff7f;
+}
+`
+
+const Left = styled.div`
+display: flex;
+flex-direction: column
+`
+
+const LinksContainer = styled.div`
+display: flex;
+color: beige;
+`
+
+const ArrowContainer = styled.div`
+cursor: pointer;
 &:hover{
   background-color:#00ff7f;
 }
