@@ -5,10 +5,6 @@ import jarvis from '../images/jarvis.gif'
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import StopIcon from '@mui/icons-material/Stop';
-import CmdModal from './mini-components/CmdModal.js';
-// import KeyModal from './modals/KeyModal.js'
-// import Header from './components/Header.js'
-// import Logs from './components/Logs.js'
 
 const Jarvis = () => {
 
@@ -83,8 +79,7 @@ const Jarvis = () => {
   const {
     transcript,
     listening,
-    resetTranscript,
-    browserSupportsSpeechRecognition
+    resetTranscript
   } = useSpeechRecognition({ commands });
 
   // ----------------------------------- Misc -----------------------------------
@@ -171,10 +166,6 @@ const Jarvis = () => {
 }
 
 // ----------------------------------- Styled Components -----------------------------------
-const Container = styled.div`
-height: 100vh;
-width: 100%;
-`
 const Background = styled.div`
   background-color: #121a23;
   display:flex;
@@ -190,10 +181,6 @@ const Background = styled.div`
 const ButtonContainer = styled.div`
 display: grid;
 grid-template-columns: 1fr 1fr 1fr
-`
-
-// basically same as button below but is green by default and turns red on click
-const OnOffButon = styled.div`
 `
 
 const Button = styled.div`
