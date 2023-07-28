@@ -6,6 +6,7 @@ import Navbar from './components/navbar.js'
 import Menu from './components/menu.js'
 import FlappybirdAI from './components/FlappybirdAI.js';
 import NeuralNetworkVisual from './components/NeuralNetworkVisual.js'
+import Jarvis from './components/jarvis.js'
 
 function App() {
   const [page, setPage] = useState('Home')
@@ -39,6 +40,7 @@ function App() {
         HomeRef={HomeRef} ProjectRef={ProjectRef} AboutRef={AboutRef} setPage={setPage}
       />}
       {page === 'project1' && <NeuralNetworkVisual />}
+      {page === 'project2' && <Jarvis />}
       {page === 'project3' && <FlappybirdAI />}
     </Container>
   );

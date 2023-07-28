@@ -59,15 +59,17 @@ const Navbar = ({ page, setPage, setScroll }) => {
         {page === 'Home' && <Options
           onClick={() => {
             setPage('Home')
-            setScroll('Project')
-          }}>
-          Projects</Options>}
-        {page === 'Home' && <Options
-          onClick={() => {
-            setPage('Home')
             setScroll('About')
           }}>
           About</Options>}
+
+        {page === 'Home' && <Options
+          onClick={() => {
+            setPage('Home')
+            setScroll('Project')
+          }}>
+          Projects</Options>}
+
         {page !== 'Home' &&
           <ArrowContainer onClick={() => setPage('Home')}>
             <ArrowBackIosNewIcon fontSize='large' />

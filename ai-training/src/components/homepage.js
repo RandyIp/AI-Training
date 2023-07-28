@@ -10,12 +10,12 @@ const Homepage = ({ HomeRef, ProjectRef, AboutRef, setPage }) => {
       <Intro />
     </Section>
 
-    <Section ref={ProjectRef} >
-      <Projects setPage={setPage} />
-    </Section>
-
     <Section ref={AboutRef}>
       <About />
+    </Section>
+
+    <Section ref={ProjectRef} >
+      <Projects setPage={setPage} />
     </Section>
   </Container>
   )

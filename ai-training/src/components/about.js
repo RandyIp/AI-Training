@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import ProfilePic from '../images/ProfilePic.jpeg'
+import ProfilePic from '../images/ProfilePic.jpg'
 // import LinkedInIcon from '@mui/icons-material/LinkedIn';
 // import GitHubIcon from '@mui/icons-material/GitHub';
 // import EmailIcon from '@mui/icons-material/Email';
@@ -26,36 +26,6 @@ const About = () => {
           </ResumeButton>
         </TextContainer>
         <ImageContainer>
-          {/* <LinksContainer>
-            <LinkedInIcon
-              fontSize='large'
-              style={{
-                margin: '1vw',
-                cursor: 'pointer'
-              }}
-              onClick={() => window.open('https://www.linkedin.com/in/randy-ip/')}
-            />
-            <GitHubIcon
-              fontSize='large'
-              style={{
-                margin: '1vw',
-                cursor: 'pointer'
-              }}
-              onClick={() => window.open('https://github.com/RandyIp')}
-            />
-            <EmailIcon
-              fontSize='large'
-              style={{
-                margin: '1vw',
-                cursor: 'pointer'
-              }}
-              onClick={(e) => {
-                window.location.href = "mailto:randyip9@gmail.com";
-                e.preventDefault()
-              }
-              }
-            />
-          </LinksContainer> */}
           <ProfileImg src={ProfilePic} />
         </ImageContainer>
       </FlexContainer>
@@ -97,11 +67,6 @@ padding: 5vw 5vw 0 0;
 color:white;
 align-items: center
 `
-
-// const LinksContainer = styled.div`
-// display: flex;
-// color: beige;
-// `
 
 const ProfileImg = styled.img`
 height: 40vh;
