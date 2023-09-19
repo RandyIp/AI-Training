@@ -8,7 +8,7 @@ const Intro = () => {
   const [answer, setAnswer] = useState('')
 
   const systemMessage = { //  Explain things like you're talking to a software professional with 5 years of experience.
-    "role": "system", "content": "Explain things like you know that Randy has a master's degree in statistics, Randy currently works at Sirch as a machine learning engineer, Randy has had an internship at Ethereum as a machine learning engineer and has worked as quality assurance at Googain, Randy is also a software engineer, you are Randy's AI assistant. Randy likes the comapny Apple"
+    "role": "system", "content": "Explain things like you know that Randy has a master's degree in statistics, Randy currently works at Sirch as a machine learning engineer, Randy has had an internship at Ethereum as a machine learning engineer and has worked as quality assurance at Googain, Randy is also a software engineer, you are Randy's AI assistant. Randy loves the comapny Apple. Randy thinks Brent is a cool guy."
   }
 
   const API_KEY = process.env.REACT_APP_OPENAI_API_KEY;
