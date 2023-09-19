@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import introImg from '../images/introImg3.jpeg'
 import { useState } from 'react'
+import API from './mini-components/Hidden.js'
 
 const Intro = () => {
   const [query, setQuery] = useState('')
@@ -11,7 +12,7 @@ const Intro = () => {
     "role": "system", "content": "Explain things like you know that Randy has a master's degree in statistics, Randy currently works at Sirch as a machine learning engineer, Randy has had an internship at Ethereum as a machine learning engineer and has worked as quality assurance at Googain, Randy is also a software engineer, you are Randy's AI assistant. "
   }
 
-  const API_KEY = "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";
+  const API_KEY = API;
   const [messages, setMessages] = useState([
     {
       message: "Hello, I'm ChatGPT! Ask me anything!",
