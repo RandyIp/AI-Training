@@ -92,8 +92,8 @@ const Intro = () => {
         <Header>
           Hi there, I'm Randy's AI assistant. Randy is my creator and a machine learning engineer. If there's anything else you want to know about him, just ask me!
         </Header>
-        <input type="text" value={query} onChange={(e) => setQuery(e.target.value)} />
-        <button onClick={() => handleSend(query)}>Ask Me!</button>
+        <Questions type="text" value={query} onChange={(e) => setQuery(e.target.value)} />
+        <Button onClick={() => handleSend(query)}>Ask Me!</Button>
         <Answers>{answer}</Answers>
       </LeftContainer>
       <IntroImg src={introImg} />
@@ -124,6 +124,10 @@ padding-top:20vh;
 width: 40vw;
 `
 
+const Questions = styled.input`
+width: 100%
+`
+
 const Answers = styled.div`
 color:white;
 display: flex;
@@ -131,6 +135,22 @@ flex-direction: column-reverse;
 overflow: auto;
 height: 70px;
 padding-top:10vh;
+`
+
+const Button = styled.div`
+display: flex;
+background-color: #00ff7f;
+width: 5vw;
+height: 3vh;
+padding: 5px;
+margin: 5px;
+color: #1b3e59;
+border-radius: 15px;
+box-shadow: 8px 8px 16px 2px #1b3e59;
+cursor: pointer;
+&:hover{
+  background-color: beige;
+}
 `
 
 export default Intro
