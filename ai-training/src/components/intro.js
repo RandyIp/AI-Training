@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import introImg from '../images/introImg3.jpeg'
+import introImg from '../images/WaveRobot.jpeg'
 import { useState } from 'react'
 
 const Intro = () => {
@@ -113,8 +113,8 @@ color: white;
 const IntroImg = styled.img`
 padding-left:10vh;
 padding-top:20vh;
-height: 40vh;
-width: 30vw;
+height: 400px;
+width: 400px;
 `
 
 const LeftContainer = styled.div`
