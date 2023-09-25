@@ -1,10 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import ProfilePic from '../images/ProfilePic.jpg'
-// import LinkedInIcon from '@mui/icons-material/LinkedIn';
-// import GitHubIcon from '@mui/icons-material/GitHub';
-// import EmailIcon from '@mui/icons-material/Email';
-// adding something random to get netifly to build again
 import Resume from '../pdf/Resume.pdf'
 
 const About = () => {
@@ -44,6 +40,7 @@ text-align: center;
 text-decoration: underline;
 `
 
+//set flex-wrap reverse only on mobile
 const FlexContainer = styled.div`
 display: flex;
 color:white;
@@ -51,6 +48,8 @@ color:white;
 
 const TextContainer = styled.div`
 padding: 5vw 10vw 0 10vw;
+margin-right: 10%;
+width: 400px;
 `
 
 const Text1 = styled.p`
@@ -63,15 +62,13 @@ color: beige;
 
 const ImageContainer = styled.div`
 display: flex;
-flex-direction: column;
+width: 450px;
 padding: 5vw 5vw 0 0;
-color:white;
-align-items: center
 `
 
 const ProfileImg = styled.img`
-height: 40vh;
-width: 40vw;
+height: 80%;
+width: 100%;
 object-fit: contain;
 `
 

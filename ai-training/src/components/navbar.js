@@ -18,10 +18,6 @@ const Navbar = ({ page, setPage, setScroll }) => {
           }}
         >
           Randy Ip</Header>
-        {/* <Menu onClick={() => switchPage()}>
-        {page === 'Home' && <MenuIcon fontSize='large' />}
-        {page !== 'Home' && <ArrowBackIosNewIcon fontSize='large' />}
-      </Menu> */}
 
         {page === 'Home' && <LinksContainer>
           <LinkedInIcon
@@ -87,16 +83,17 @@ top: 0;
 z-index: 9001;
 height: max-content;
 width: 100vw;
-background-color: transparent;
+background-color: black;
 display: flex;
 margin: 0;
 `
 
 const Header = styled.h1`
-color:beige;
+color: beige;
 width: max-content;
-padding: 1vw 1vw 1vw 1vw;
-margin: 0;
+min-width: fit-content;
+padding: 1% 1% 1% 1%;
+margin: 1%;
 cursor: pointer;
 `
 
@@ -125,7 +122,7 @@ align-items: center;
 
 const Left = styled.div`
 display: flex;
-flex-direction: column
+align-items: center;
 `
 
 const LinksContainer = styled.div`

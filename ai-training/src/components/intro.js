@@ -2,13 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 import introImg from '../images/WaveRobot.jpeg'
 import { useState } from 'react'
+import chatbotStatistics from '../pdf/Chatbot_Statistics.pdf'
 
 const Intro = () => {
   const [query, setQuery] = useState('')
   const [answer, setAnswer] = useState('')
 
-  const systemMessage = { //  Explain things like you're talking to a software professional with 5 years of experience.
-    "role": "system", "content": "Explain things like you know that Randy has a master's degree in statistics, Randy currently works at Sirch as a machine learning engineer, Randy has had an internship at Ethereum as a machine learning engineer and has worked as quality assurance at Googain, Randy is also a software engineer, you are Randy's AI assistant. Randy loves the comapny Apple. Randy thinks Brent is a cool guy."
+  const systemMessage = {
+    "role": "system", "content": "Explain things like you know that Randy has a master's degree in statistics, Randy currently works at Sirch as a machine learning engineer, Randy has had an internship at Ethereum as a machine learning engineer and has worked as quality assurance at Googain, Randy is also a software engineer, you are Randy's AI assistant. Randy loves the comapny Apple."
   }
 
   const API_KEY = process.env.REACT_APP_OPENAI_API_KEY;
@@ -19,7 +20,6 @@ const Intro = () => {
       sender: "ChatGPT"
     }
   ]);
-  // const [isTyping, setIsTyping] = useState(false);
 
   const handleSend = async (message) => {
     const newMessage = {
@@ -32,9 +32,6 @@ const Intro = () => {
 
     setMessages(newMessages);
     setAnswer('Hm...Let me think about that...')
-    // Initial system message to determine ChatGPT functionality
-    // How it responds, how it talks, etc.
-    // setIsTyping(true);
     await processMessageToChatGPT(newMessages);
   };
 
@@ -53,7 +50,7 @@ const Intro = () => {
       return { role: role, content: messageObject.message }
     });
 
-    console.log(apiMessages)
+    // console.log(apiMessages)
     // Get the request body set up with the model we plan to use
     // and the messages which we formatted above. We add a system message in the front to'
     // determine how we want chatGPT to act.
@@ -76,7 +73,7 @@ const Intro = () => {
       }).then((data) => {
         return data.json();
       }).then((data) => {
-        console.log(data);
+        // console.log(data);
         setMessages([...chatMessages, {
           message: data.choices[0].message.content,
           sender: "ChatGPT"
@@ -96,13 +93,20 @@ const Intro = () => {
         <Button onClick={() => handleSend(query)}>Ask Me!</Button>
         <Answers>{answer}</Answers>
       </LeftContainer>
-      <IntroImg src={introImg} />
+      <RightContainer>
+        <IntroImg src={introImg} />
+        <RandyAIText>Randy takes good care of me, but if you want to check up on me click the button below!</RandyAIText>
+        <HealthButton onClick={() => window.open(chatbotStatistics)}>Check my Health</HealthButton>
+      </RightContainer>
     </FlexContainer>
   )
 }
 
 const FlexContainer = styled.div`
 display: flex;
+flex-wrap: wrap;
+justify-content: center;
+align-items:center;
 `
 
 const Header = styled.h3`
@@ -111,17 +115,20 @@ color: white;
 `
 
 const IntroImg = styled.img`
-padding-left:10vh;
-padding-top:20vh;
-height: 400px;
-width: 400px;
+height: 70%;
+width: 100%;
 `
 
 const LeftContainer = styled.div`
-margin-left:10vw;
-margin-top: 0vh;
-padding-top:20vh;
-width: 40vw;
+margin-top: 10%;
+width: 450px;
+`
+
+//remove margin for mobile only
+const RightContainer = styled.div`
+padding-left:10%;
+margin-top: 10%;
+width: 450px;
 `
 
 const Questions = styled.input`
@@ -140,16 +147,30 @@ padding-top:10vh;
 const Button = styled.div`
 display: flex;
 background-color: #00ff7f;
-width: 5vw;
-height: 3vh;
-padding: 5px;
-margin: 5px;
+width: max-content;
+height: max-content;
+padding: 1%;
+margin: 1%;
 color: #1b3e59;
 border-radius: 15px;
-box-shadow: 8px 8px 16px 2px #1b3e59;
 cursor: pointer;
 &:hover{
   background-color: beige;
+}
+`
+
+const RandyAIText = styled.p`
+color: white;
+`
+const HealthButton = styled.div`
+width: 100%
+height: 5%;
+color: white;
+border: 2px solid #00ff7f;
+cursor: pointer;
+text-align: center;
+&: hover {
+  background-color: #006400;
 }
 `
 

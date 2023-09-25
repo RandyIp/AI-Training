@@ -22,15 +22,15 @@ const Homepage = ({ HomeRef, ProjectRef, AboutRef, setPage }) => {
 }
 
 const Container = styled.div`
-width: 100vw;
+width: 100%;
 max-width: 100%;
 background-color: black;
 `
 const Section = styled.div`
 position:relative;
 background-color: black;
-height: 100vh;
-width: 100vw;
+height: 100%;
+width: 100%;
 max-width: 100%;
 margin:0;
 `
