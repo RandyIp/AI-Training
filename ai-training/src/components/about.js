@@ -40,10 +40,12 @@ text-align: center;
 text-decoration: underline;
 `
 
-//set flex-wrap reverse only on mobile
 const FlexContainer = styled.div`
 display: flex;
 color:white;
+@media (max-width: 820px){
+  flex-wrap: wrap-reverse;
+}
 `
 
 const TextContainer = styled.div`

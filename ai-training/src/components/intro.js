@@ -124,11 +124,13 @@ margin-top: 10%;
 width: 450px;
 `
 
-//remove margin for mobile only
 const RightContainer = styled.div`
 padding-left:10%;
 margin-top: 10%;
 width: 450px;
+@media (max-width: 820px){
+  padding-left: 0%;
+}
 `
 
 const Questions = styled.input`
