@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import Handwritten9 from '../images/Handwritten9.png'
-import FlappyBird from '../images/Flappy_Bird_icon.png'
+// import FlappyBird from '../images/Flappy_Bird_icon.png'
 import Jarvis from '../images/jarvis.jpeg'
+import apple from '../images/apple.webp'
 
 const Projects = ({ setPage }) => {
   return (
@@ -22,12 +23,11 @@ const Projects = ({ setPage }) => {
           <ProjectDesc>Just a Rather Very Intelligent System</ProjectDesc>
         </DescContainer>
       </Card>
-      {/* <Card onClick={() => setPage('project3')}> */}
-      <Card>
-        <ImageContainer src={FlappyBird} />
+      <Card onClick={() => setPage('project3')}>
+        <ImageContainer src={apple} />
         <DescContainer>
-          <ProjectTitle>Flappy Bird AI</ProjectTitle>
-          <ProjectDesc>Coming Soon.</ProjectDesc>
+          <ProjectTitle>Apple Generator</ProjectTitle>
+          <ProjectDesc>Generate your own apples</ProjectDesc>
         </DescContainer>
       </Card>
     </Container>

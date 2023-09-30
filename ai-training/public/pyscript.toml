@@ -1,0 +1,1 @@
+packages = ['Pillow', 'requests', 'transformers', 'scipy', 'ftfy', 'accelerate', 'diffusers==0.11.1', 'torch']

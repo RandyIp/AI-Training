@@ -1,0 +1,16 @@
+#container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  top: 0;
+  position: fixed;
+  background-color: black;
+}
+
+#title {
+  color: white;
+}

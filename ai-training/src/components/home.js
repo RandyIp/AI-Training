@@ -3,9 +3,10 @@ import { useState, useRef } from 'react';
 import Homepage from './homepage.js'
 import Navbar from './navbar.js'
 import Menu from './menu.js'
-import FlappybirdAI from './FlappybirdAI.js';
+// import FlappybirdAI from './FlappybirdAI.js';
 import NeuralNetworkVisual from './NeuralNetworkVisual.js'
 import Jarvis from './jarvis.js'
+import AppleGenerator from './AppleGenerator.js'
 
 const Home = ({ initialPage }) => {
   const [page, setPage] = useState(initialPage)
@@ -38,7 +39,7 @@ const Home = ({ initialPage }) => {
       />}
       {page === 'project1' && <NeuralNetworkVisual />}
       {page === 'project2' && <Jarvis />}
-      {page === 'project3' && <FlappybirdAI />}
+      {page === 'project3' && <AppleGenerator />}
     </Container>
   );
 }

@@ -2,9 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import introImg from '../images/WaveRobot.jpeg'
 import { useState } from 'react'
-import chatbotStatistics from '../pdf/Chatbot_Statistics.pdf'
+import ModalRandyAI from './mini-components/ModalRandyAI.js'
 
 const Intro = () => {
+  const [modal, setModal] = useState(false)
   const [query, setQuery] = useState('')
   const [answer, setAnswer] = useState('')
 
@@ -96,8 +97,9 @@ const Intro = () => {
       <RightContainer>
         <IntroImg src={introImg} />
         <RandyAIText>Randy takes good care of me, but if you want to check up on me click the button below!</RandyAIText>
-        <HealthButton onClick={() => window.open(chatbotStatistics)}>Check my Health</HealthButton>
+        <HealthButton onClick={() => setModal(!modal)}>Check my Health</HealthButton>
       </RightContainer>
+      <ModalRandyAI modal={modal} setModal={setModal}></ModalRandyAI>
     </FlexContainer>
   )
 }

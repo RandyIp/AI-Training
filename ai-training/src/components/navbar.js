@@ -19,7 +19,7 @@ const Navbar = ({ page, setPage, setScroll }) => {
         >
           Randy Ip</Header>
 
-        {page === 'Home' && <LinksContainer>
+        <LinksContainer>
           <LinkedInIcon
             fontSize='large'
             style={{
@@ -48,7 +48,7 @@ const Navbar = ({ page, setPage, setScroll }) => {
             }
             }
           />
-        </LinksContainer>}
+        </LinksContainer>
       </Left>
       <Menu>
 
