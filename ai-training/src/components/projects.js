@@ -35,7 +35,8 @@ const Projects = ({ setPage }) => {
 }
 
 const Container = styled.div`
-padding: 0 10vw 10% 10vw;
+padding-bottom: 10%;
+padding-top:10%;
 display: flex;
 flex-direction: column;
 justify-content: center;

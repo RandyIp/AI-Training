@@ -31,6 +31,10 @@ const About = () => {
 }
 
 const Container = styled.div`
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
 `
 
 const Header = styled.h1`
@@ -43,13 +47,15 @@ text-decoration: underline;
 const FlexContainer = styled.div`
 display: flex;
 color:white;
+justify-content: center;
+align-items: center;
 @media (max-width: 820px){
   flex-wrap: wrap-reverse;
 }
 `
 
 const TextContainer = styled.div`
-padding: 5vw 10vw 0 10vw;
+
 margin-right: 10%;
 width: 400px;
 `
@@ -65,11 +71,11 @@ color: beige;
 const ImageContainer = styled.div`
 display: flex;
 width: 450px;
-padding: 5vw 5vw 0 0;
+
 `
 
 const ProfileImg = styled.img`
-height: 80%;
+height: 70%;
 width: 100%;
 object-fit: contain;
 `
