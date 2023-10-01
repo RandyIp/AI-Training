@@ -55,9 +55,7 @@ align-items: center;
 `
 
 const TextContainer = styled.div`
-
-margin-right: 10%;
-width: 400px;
+width: 450px;
 `
 
 const Text1 = styled.p`
@@ -69,6 +67,7 @@ color: beige;
 `
 
 const ImageContainer = styled.div`
+margin-left: 10%;
 display: flex;
 width: 450px;
 

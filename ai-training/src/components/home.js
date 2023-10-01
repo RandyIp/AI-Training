@@ -7,6 +7,7 @@ import Menu from './menu.js'
 import NeuralNetworkVisual from './NeuralNetworkVisual.js'
 import Jarvis from './jarvis.js'
 import AppleGenerator from './AppleGenerator.js'
+import Debug from './debug.js'
 
 const Home = ({ initialPage }) => {
   const [page, setPage] = useState(initialPage)
@@ -40,6 +41,8 @@ const Home = ({ initialPage }) => {
       {page === 'project1' && <NeuralNetworkVisual />}
       {page === 'project2' && <Jarvis />}
       {page === 'project3' && <AppleGenerator />}
+      {page === 'project4' && <Debug />}
+
     </Container>
   );
 }

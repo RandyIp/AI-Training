@@ -26,6 +26,7 @@ const ModalRandyAI = ({ modal, setModal }) => {
           {buttonNames.map(name => (
             <ButtonContainer>
               <Button
+                key={name}
                 buttonState={buttonState}
                 name={name}
                 onClick={() => setButtonState(name)}>

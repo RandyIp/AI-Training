@@ -4,6 +4,7 @@ import Handwritten9 from '../images/Handwritten9.png'
 // import FlappyBird from '../images/Flappy_Bird_icon.png'
 import Jarvis from '../images/jarvis.jpeg'
 import apple from '../images/apple.webp'
+import debug from '../images/debug.png'
 
 const Projects = ({ setPage }) => {
   return (
@@ -28,6 +29,13 @@ const Projects = ({ setPage }) => {
         <DescContainer>
           <ProjectTitle>Apple Generator</ProjectTitle>
           <ProjectDesc>Generate your own apples</ProjectDesc>
+        </DescContainer>
+      </Card>
+      <Card onClick={() => setPage('project4')}>
+        <ImageContainer src={debug} />
+        <DescContainer>
+          <ProjectTitle>AI Debugger</ProjectTitle>
+          <ProjectDesc>Is your code bugging you? Let me fix that for you</ProjectDesc>
         </DescContainer>
       </Card>
     </Container>
