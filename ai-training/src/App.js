@@ -9,8 +9,10 @@ const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path='/mlvis' element={<Home initialPage='project1' />} />
-        <Route path='/jarvis' element={<Home initialPage='project2' />} />
+        <Route path='/proj1' element={<Home initialPage='project1' />} />
+        <Route path='/proj2' element={<Home initialPage='project2' />} />
+        <Route path='/proj3' element={<Home initialPage='project3' />} />
+        <Route path='/proj4' element={<Home initialPage='project4' />} />
         <Route path="/" element={<Home initialPage='Home' />} />
       </Routes>
     </Router >
