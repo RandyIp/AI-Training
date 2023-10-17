@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import introImg from '../images/WaveRobot.jpeg'
 import { useState } from 'react'
 import ModalRandyAI from './mini-components/ModalRandyAI.js'
+// import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter } from "@nextui-org/react";
+import { Button } from "@nextui-org/react";
 
 const Intro = () => {
   const [modal, setModal] = useState(false)
@@ -32,7 +34,8 @@ const Intro = () => {
     const newMessages = [...messages, newMessage];
 
     setMessages(newMessages);
-    setAnswer('Hm...Let me think about that...')
+    setQuery('')
+    if (query.length > 0) { setAnswer('Hm...Let me think about that...') }
     await processMessageToChatGPT(newMessages);
   };
 
@@ -91,7 +94,7 @@ const Intro = () => {
           Hi there, I'm Randy's AI assistant. Randy is my creator and a machine learning engineer. If there's anything else you want to know about him, just ask me!
         </Header>
         <Questions type="text" value={query} onChange={(e) => setQuery(e.target.value)} />
-        <Button onClick={() => handleSend(query)}>Ask Me!</Button>
+        <Button radius='full' color='primary' onClick={() => handleSend(query)}>Ask Me!</Button>
         <Answers>{answer}</Answers>
       </LeftContainer>
       <RightContainer>
@@ -148,20 +151,20 @@ height: 70px;
 padding-top:10vh;
 `
 
-const Button = styled.div`
-display: flex;
-background-color: #00ff7f;
-width: max-content;
-height: max-content;
-padding: 1%;
-margin: 1%;
-color: #1b3e59;
-border-radius: 15px;
-cursor: pointer;
-&:hover{
-  background-color: beige;
-}
-`
+// const Button = styled.div`
+// display: flex;
+// background-color: #00ff7f;
+// width: max-content;
+// height: max-content;
+// padding: 1%;
+// margin: 1%;
+// color: #1b3e59;
+// border-radius: 15px;
+// cursor: pointer;
+// &:hover{
+//   background-color: beige;
+// }
+// `
 
 const RandyAIText = styled.p`
 color: white;

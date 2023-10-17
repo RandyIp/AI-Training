@@ -5,6 +5,7 @@ import {
   Route,
 } from "react-router-dom";
 import Home from './components/home.js'
+
 const App = () => {
   return (
     <Router>

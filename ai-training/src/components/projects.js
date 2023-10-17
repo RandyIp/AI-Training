@@ -13,7 +13,7 @@ const Projects = ({ setPage }) => {
       <Card onClick={() => setPage('project1')}>
         <ImageContainer src={Handwritten9} />
         <DescContainer>
-          <ProjectTitle>Machine Learning Visualization</ProjectTitle>
+          <ProjectTitle>Computer Vision Demonstration</ProjectTitle>
           <ProjectDesc>Observe how a neural network works on a MNIST dataset</ProjectDesc>
         </DescContainer>
       </Card>
