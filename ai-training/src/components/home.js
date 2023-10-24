@@ -91,8 +91,10 @@ const Home = ({ setPage }) => {
     <FlexContainer>
       <LeftContainer>
         <Header>
-          Hi there, I'm Randy's AI assistant. Randy is my creator and a machine learning engineer. If there's anything else you want to know about him, just ask me!
+          Welcome, it's nice to meet you. Randy is a software engineer specializing in machine learning based in the Bay Area.
         </Header>
+        <SmallerHeader>If there's anything else you want to know about him, feel free to ask me or browse around.
+        </SmallerHeader>
         <Questions type="text" value={query} onChange={(e) => setQuery(e.target.value)} />
         <Button style={{ backgroundColor: '#006400', hover: { backgroundColor: '#00ff7f' } }} radius='full' onClick={() => handleSend(query)}>Ask Me!</Button>
         <Answers>{answer}</Answers>
@@ -116,8 +118,15 @@ height: 100vh;
 `
 
 const Header = styled.h3`
-
+font-size: x-large;
 color: white;
+margin-bottom: 5px;
+`
+
+const SmallerHeader = styled.p`
+font - size: large;
+color: beige;
+margin-bottom: 5px;
 `
 
 const IntroImg = styled.img`
@@ -126,13 +135,13 @@ width: 100%;
 `
 
 const LeftContainer = styled.div`
-margin-top: 10%;
+margin-top: 3%;
 width: 450px;
 `
 
 const RightContainer = styled.div`
 padding-left:10%;
-margin-top: 10%;
+margin-top: 3%;
 width: 450px;
 @media (max-width: 820px){
   padding-left: 0%;
@@ -149,7 +158,7 @@ color:white;
 display: flex;
 flex-direction: column-reverse;
 overflow: auto;
-height: 70px;
+height: 200px;
 padding-top:10vh;
 `
 

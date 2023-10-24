@@ -10,13 +10,13 @@ const About = () => {
       <FlexContainer>
         <TextContainer>
           <Text1>
-            I'm a software/machine learning engineer with a master's in statistics specializing in machine learning and an advanced software engineering certificate from Hack Reactor.
+            I'm a software engineer who specializes in machine learning. I have both a master's in statistics and an advanced software engineering certificate from Hack Reactor.
           </Text1>
           <Text2>
-            One of my notable projects involved building time series machine learning models for Ethereum to predict and detect fraud within their system. As a software and machine learning engineer, I have successfully implemented several end-to-end machine learning projects.
+            I have worked on several machine learning projects for companies such as Ethereum and start up companies. I also have experience working on quality assuarance at a mortgage company which has helped me be more mindful about the quality of my code.
           </Text2>
           <Text1>
-            My dedication to learning and expanding my skillset is evident in my progress over the years. I am happy to share my knowledge with others and always seek new opportunities to grow and develop.
+            I believe in continous learning and it is the main reason I wanted to work with technology. New and difficult things aren't to be avoided but rather approached with excitment and passion. This is what I live by, I find improvement by seeking the next challenge and tackling it with a smile.
           </Text1>
           <ResumeButton onClick={() => window.open(Resume)}>
             Resume (PDF)
