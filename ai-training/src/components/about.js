@@ -35,6 +35,7 @@ display: flex;
 flex-direction: column;
 align-items: center;
 justify-content: center;
+height: 100vh;
 `
 
 const Header = styled.h1`
@@ -42,6 +43,7 @@ color:white;
 padding: 5vw 0 0 0;
 text-align: center;
 text-decoration: underline;
+font-size: large;
 `
 
 const FlexContainer = styled.div`

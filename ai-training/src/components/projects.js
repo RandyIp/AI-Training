@@ -49,12 +49,14 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
+height: 100vh;
 `
 
 const Header = styled.h1`
 color:white;
 text-align: center;
-text-decoration: underline
+text-decoration: underline;
+font-size: large;
 `
 
 const ProjectTitle = styled.p`

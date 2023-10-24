@@ -1,25 +1,25 @@
 import React from 'react';
 import styled from 'styled-components';
 // import MenuIcon from '@mui/icons-material/Menu';
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+// import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import EmailIcon from '@mui/icons-material/Email';
 
-const Navbar = ({ page, setPage, setScroll }) => {
+const Navbar = ({ page, setPage }) => {
 
   return (
     <Container>
       <Left>
-        <Header
-          onClick={() => {
-            if (page === 'Home') setScroll('Home')
-            else setPage('Home')
-          }}
-        >
-          Randy Ip</Header>
+        <Header>Randy Ip</Header>
+        <Options onClick={() => { setPage('Home') }}>Home</Options>
+        <Options onClick={() => { setPage('About') }}>About</Options>
+        <Options onClick={() => { setPage('Projects') }}>Projects</Options>
 
+      </Left>
+      <Menu>
         <LinksContainer>
+
           <LinkedInIcon
             fontSize='large'
             style={{
@@ -49,28 +49,6 @@ const Navbar = ({ page, setPage, setScroll }) => {
             }
           />
         </LinksContainer>
-      </Left>
-      <Menu>
-
-        {page === 'Home' && <Options
-          onClick={() => {
-            setPage('Home')
-            setScroll('About')
-          }}>
-          About</Options>}
-
-        {page === 'Home' && <Options
-          onClick={() => {
-            setPage('Home')
-            setScroll('Project')
-          }}>
-          Projects</Options>}
-
-        {page !== 'Home' &&
-          <ArrowContainer onClick={() => setPage('Home')}>
-            <ArrowBackIosNewIcon fontSize='large' />
-          </ArrowContainer>
-        }
 
       </Menu>
     </Container>
@@ -88,13 +66,15 @@ display: flex;
 margin: 0;
 `
 
-const Header = styled.h1`
+const Header = styled.p`
 color: beige;
 width: max-content;
 min-width: fit-content;
 padding: 1% 1% 1% 1%;
 margin: 1%;
-cursor: pointer;
+font-size: x-large;
+font-weight: bold;
+font-style: italic;
 `
 
 const Menu = styled.div`
@@ -123,6 +103,7 @@ align-items: center;
 const Left = styled.div`
 display: flex;
 align-items: center;
+color: beige
 `
 
 const LinksContainer = styled.div`
@@ -130,10 +111,4 @@ display: flex;
 color: beige;
 `
 
-const ArrowContainer = styled.div`
-cursor: pointer;
-&:hover{
-  background-color:#00ff7f;
-}
-`
 export default Navbar
