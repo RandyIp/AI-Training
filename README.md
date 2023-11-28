@@ -1,2 +1,2 @@
-# AI-Training
-Various AI Trainings
+# Project Portfolio
+This project is deployed at https://randyip.netlify.app/
